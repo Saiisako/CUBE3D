@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 15:36:03 by skock             #+#    #+#             */
-/*   Updated: 2025/06/26 19:35:23 by skock            ###   ########.fr       */
+/*   Created: 2025/06/26 17:12:21 by skock             #+#    #+#             */
+/*   Updated: 2025/06/26 19:23:39 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../cube.h"
 
-int	ft_isalpha(int c)
+void	init_struct(t_cube *cube, char **av)
 {
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-		return (1);
-	return (0);
+	cube->id = malloc(sizeof(t_id));
+	cube->av = av;
+	cube->file_path = av[1];
+	cube->id->no_bool = false;
+	cube->id->so_bool = false;
+	cube->id->we_bool = false;
+	cube->id->ea_bool = false;
+	cube->id->f_bool = false;
+	cube->id->c_bool = false;
 }

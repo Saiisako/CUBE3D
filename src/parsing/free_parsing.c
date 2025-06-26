@@ -1,20 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   free_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 15:36:03 by skock             #+#    #+#             */
-/*   Updated: 2025/06/26 19:35:23 by skock            ###   ########.fr       */
+/*   Created: 2025/06/26 17:09:28 by skock             #+#    #+#             */
+/*   Updated: 2025/06/26 18:46:18 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../cube.h"
 
-int	ft_isalpha(int c)
+void	free_array(char **array)
 {
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-		return (1);
-	return (0);
+	int	i;
+
+	i = -1;
+	while (array[++i])
+	{
+		if (array[i])
+			free(array[i]);
+	}
+	free(array);
+}
+
+void	free_all(t_cube *cube)
+{
+	if (cube->map->grid)
+		free_array(cube->map->grid);
+	if (cube->map)
+		free(cube->map);
+	free(cube);
 }

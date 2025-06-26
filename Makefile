@@ -1,11 +1,18 @@
 NAME = cub3D
 CC = cc
-FLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address,leak
+FLAGS = -Wall -Werror -Wextra -g3 #-fsanitize=address,leak
 RM = rm -rf
 LIBFT = library/libft/libft.a
 LIBFT_FLAGS = -L./library/libft -lft
 
 SRCS	=	main.c\
+			src/parsing/error.c\
+			src/parsing/free_parsing.c\
+			src/parsing/malloc_map.c\
+			src/parsing/init.c\
+			src/parsing/parsing.c\
+			src/game/graphic.c\
+
 
 RED = \033[0;31m
 GREEN = \033[0;32m
