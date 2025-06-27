@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:15:24 by skock             #+#    #+#             */
-/*   Updated: 2025/06/27 11:48:11 by skock            ###   ########.fr       */
+/*   Updated: 2025/06/27 12:03:10 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,18 @@ void	check_path(t_cube *cube, int id, int *i, int *j)
 	char *path;
 	(void)id;
 	int	fd;
-	
+
 	path = ft_substr(cube->map->grid[*i], (*j), (ft_strlen(cube->map->grid[*i]) - (*j)));
 	fd = open(path, O_RDONLY);
 	// if (fd < 0)
-	// 	ft_error_parsing(cube, "error: cannot find texture's path\n");
+	// 	ft_error_parsing(cube, "cannot find texture's path\n");
 	(*i)++;
 }
 
 void	check_args(t_cube *cube, int id, int *i, int *j)
 {
 	if (!id)
-		ft_error_parsing(cube, "error: identification incorrect\n");
+		ft_error_parsing(cube, "identification incorrect\n");
 	if (id == NO || id == SO || id == WE || id == EA)
 	{
 		(*j) += 2;
@@ -94,7 +94,7 @@ void	check_args(t_cube *cube, int id, int *i, int *j)
 
 	// }
 	(*j)++;
-	
+
 }
 
 void	check_id(t_cube *cube)
@@ -102,7 +102,7 @@ void	check_id(t_cube *cube)
 	int	i;
 	int	j;
 	int id;
-	
+
 	j = 0;
 	i = 0;
 	while (cube->map->grid[i])
@@ -114,12 +114,14 @@ void	check_id(t_cube *cube)
 				j++;
 			if (!ft_is_upper_alpha(cube->map->grid[i][j]))
 			{
-				printf("char verified = %c\n",cube->map->grid[i][j]);
-				ft_error_parsing(cube, "error: identification incorrect\n");
+				// printf("char verified = %c\n",cube->map->grid[i][j]);
+				// printf("char verified = %c\n",cube->map->grid[i][j]);
+				ft_error_parsing(cube, "identification incorrect\n");
 			}
 			else
 			{
 				id = verif_id_key(cube->map->grid[i][j], cube->map->grid[i][j + 1]);
+				printf("here\n");
 				check_args(cube, id, &i, &j);
 			}
 			i++;
@@ -131,10 +133,10 @@ void	parsing(t_cube *cube)
 {
 	read_map(cube->file_path, cube);
 	is_cub(cube->file_path);
-	
+
 	printf("\n");
 	printf("\n");
 	printf("\n");
 	check_id(cube);
-	
+
 }
