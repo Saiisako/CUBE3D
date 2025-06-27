@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/06/27 17:29:44 by skock            ###   ########.fr       */
+/*   Updated: 2025/06/27 18:18:50 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef struct s_cube
 t_enum	verif_id_key(char current, char next);
 int		ft_atoi_rgb(const char *str);
 int		ft_is_upper_alpha(int c);
-int		check_boolean(t_id *id);
+int		check_boolean(t_cube *cube);
 void	is_cub(char	*file_path);
 void	init_colors(t_cube *cube);
 void	ft_error_fd(t_cube *cube);
@@ -93,6 +93,7 @@ void	change_id_color_bool(t_cube *cube, int id, char *format);
 void	verif_rgb(t_cube *cube, char *format, char **rgb);
 void	check_format(t_cube *cube, char *format, int id);
 void	check_colors(t_cube *cube, int id, int *i, int *j);
+void	check_duplicate_color(t_cube *cube, int id, char *format);
 
 		////////// GAME //////////
 

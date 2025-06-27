@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:59:08 by skock             #+#    #+#             */
-/*   Updated: 2025/06/27 17:31:53 by skock            ###   ########.fr       */
+/*   Updated: 2025/06/27 18:12:25 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	change_id_color_bool(t_cube *cube, int id, char *format)
 {
 	if (id == F)
 	{
-		check_duplicate_id(cube, id, format);
+		check_duplicate_color(cube, id, format);
 		cube->id->f_bool = true;
 	}
 	else if (id == C)
 	{
-		check_duplicate_id(cube, id, format);
-		cube->id->f_bool = true;
+		check_duplicate_color(cube, id, format);
+		cube->id->c_bool = true;
 	}
 }
 

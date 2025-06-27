@@ -6,16 +6,16 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 17:00:01 by skock             #+#    #+#             */
-/*   Updated: 2025/06/27 17:25:24 by skock            ###   ########.fr       */
+/*   Updated: 2025/06/27 18:19:13 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cube.h"
 
-int	check_boolean(t_id *id)
+int	check_boolean(t_cube *cube)
 {
-	if (id->no_bool && id->so_bool && id->we_bool && id->ea_bool
-		&& id->f_bool && id->c_bool)
+	if (cube->id->no_bool && cube->id->so_bool && cube->id->we_bool
+		&& cube->id->ea_bool && cube->id->f_bool && cube->id->c_bool)
 		return (0);
 	else
 		return (1);
@@ -37,30 +37,6 @@ t_enum	verif_id_key(char current, char next)
 		return (C);
 	else
 		return (0);
-}
-
-void	check_duplicate_id(t_cube *cube, int id, char *path)
-{
-	if (id == NO && cube->id->no_bool == true)
-	{
-		free(path);
-		ft_error_parsing(cube, "duplicate texture ID : 'NO' found.");
-	}
-	else if (id == SO && cube->id->so_bool == true)
-	{
-		free(path);
-		ft_error_parsing(cube, "duplicate texture ID : 'NO' found.");
-	}
-	else if (id == WE && cube->id->we_bool == true)
-	{
-		free(path);
-		ft_error_parsing(cube, "duplicate texture ID : 'NO' found.");
-	}
-	else if (id == EA && cube->id->ea_bool == true)
-	{
-		free(path);
-		ft_error_parsing(cube, "duplicate texture ID : 'NO' found.");
-	}
 }
 
 void	check_args(t_cube *cube, int id, int *i, int *j)
@@ -92,12 +68,14 @@ void	check_id(t_cube *cube)
 	int	j;
 	int	id;
 
-	i = 0;
-	while (cube->map->grid[i])
+	i = -1;
+	while (cube->map->grid[++i])
 	{
 		j = 0;
 		while (cube->map->grid[i][j])
 		{
+			if (!check_boolean(cube))
+				break ;
 			while (ft_iswhitespace(cube->map->grid[i][j]))
 				j++;
 			if (!ft_is_upper_alpha(cube->map->grid[i][j]))
@@ -110,6 +88,5 @@ void	check_id(t_cube *cube)
 				j++;
 			}
 		}
-		i++;
 	}
 }
