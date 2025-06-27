@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/06/26 19:04:02 by skock            ###   ########.fr       */
+/*   Updated: 2025/06/27 10:49:55 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,16 @@ typedef struct s_cube
 	t_id	*id;
 	t_map	*map;
 }			t_cube;
+
+typedef enum s_enum
+{
+	NO = 1,
+	SO,
+	WE,
+	EA,
+	F,
+	C,
+}		t_enum;
 
 ///////////////// FUNCTIONS /////////////////
 
