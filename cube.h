@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/06/27 10:49:55 by skock            ###   ########.fr       */
+/*   Updated: 2025/06/27 17:29:44 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,23 @@
 # include "library/libft/libft.h"
 # include "library/printf/ft_printf.h"
 # include <stdbool.h>
+
+typedef enum s_enum
+{
+	NO = 1,
+	SO,
+	WE,
+	EA,
+	F,
+	C,
+}		t_enum;
+
+typedef struct s_color
+{
+	int	r_color;
+	int	g_color;
+	int	b_color;
+}	t_color;
 
 typedef struct s_id
 {
@@ -45,23 +62,21 @@ typedef struct s_cube
 	char	*file_path;
 	t_id	*id;
 	t_map	*map;
+	t_color	*color_f;
+	t_color	*color_c;
 }			t_cube;
-
-typedef enum s_enum
-{
-	NO = 1,
-	SO,
-	WE,
-	EA,
-	F,
-	C,
-}		t_enum;
 
 ///////////////// FUNCTIONS /////////////////
 
 		////////// PARSING //////////
 
-void	ft_error_fd(void);
+t_enum	verif_id_key(char current, char next);
+int		ft_atoi_rgb(const char *str);
+int		ft_is_upper_alpha(int c);
+int		check_boolean(t_id *id);
+void	is_cub(char	*file_path);
+void	init_colors(t_cube *cube);
+void	ft_error_fd(t_cube *cube);
 void	ft_error_parsing(t_cube *cube, const char *str);
 void	parsing(t_cube *cube);
 void	read_map2(const char *file_path, t_cube *cube);
@@ -69,6 +84,15 @@ void	read_map(const char *file_path, t_cube *cube);
 void	free_array(char **array);
 void	free_all(t_cube *cube);
 void	init_struct(t_cube *cube, char **av);
+void	check_path(t_cube *cube, int id, int *i, int *j);
+void	change_id_path_bool(t_cube *cube, int id, char *path);;
+void	check_duplicate_id(t_cube *cube, int id, char *path);
+void	check_args(t_cube *cube, int id, int *i, int *j);
+void	check_id(t_cube *cube);
+void	change_id_color_bool(t_cube *cube, int id, char *format);
+void	verif_rgb(t_cube *cube, char *format, char **rgb);
+void	check_format(t_cube *cube, char *format, int id);
+void	check_colors(t_cube *cube, int id, int *i, int *j);
 
 		////////// GAME //////////
 

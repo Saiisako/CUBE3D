@@ -7,10 +7,14 @@ LIBFT_FLAGS = -L./library/libft -lft
 
 SRCS	=	main.c\
 			src/parsing/error.c\
+			src/parsing/parsing.c\
 			src/parsing/free_parsing.c\
 			src/parsing/malloc_map.c\
 			src/parsing/init.c\
-			src/parsing/parsing.c\
+			src/parsing/verif_colors.c\
+			src/parsing/verif_id.c\
+			src/parsing/verif_path.c\
+			src/parsing/utils.c\
 			src/game/graphic.c\
 
 

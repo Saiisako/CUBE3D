@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:13:52 by skock             #+#    #+#             */
-/*   Updated: 2025/06/26 17:21:12 by skock            ###   ########.fr       */
+/*   Updated: 2025/06/27 17:09:49 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	read_map2(const char *file_path, t_cube *cube)
 
 	fd = open(file_path, O_RDONLY);
 	if (fd < 0)
-		ft_error_fd();
+		ft_error_fd(cube);
 	i = 0;
 	line = get_next_line(fd);
 	while (line != NULL)
@@ -45,7 +45,7 @@ void	read_map(const char *file_path, t_cube *cube)
 
 	fd = open(file_path, O_RDONLY);
 	if (fd < 0)
-		ft_error_fd();
+		ft_error_fd(cube);
 	i = 0;
 	line = get_next_line(fd);
 	while (line != NULL)
