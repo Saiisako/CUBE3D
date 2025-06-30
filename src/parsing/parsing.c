@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:15:24 by skock             #+#    #+#             */
-/*   Updated: 2025/06/30 13:19:52 by skock            ###   ########.fr       */
+/*   Updated: 2025/06/30 14:32:16 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int	is_valid_start(char *line)
 
 char *ft_strdup_set(const char *line, int end)
 {
-	int i;
-	char *new_line;
+	int		i;
+	char	*new_line;
 
 	i = 0;
 	new_line = malloc(sizeof(char) * end + 1);
@@ -115,14 +115,14 @@ void	copy_map(t_cube *cube, int start, int height, int length)
 int	get_longest_line(char **map, int i)
 {
 	int l;
-	int m;
+	int tmp;
 
 	l = 0;
 	while (map[i])
 	{
-		m = ft_strlen(map[i]);
-		if (m > l)
-			l = m;
+		tmp = ft_strlen(map[i]);
+		if (tmp > l)
+			l = tmp;
 		i++;
 	}
 	return (l);
@@ -145,11 +145,7 @@ void	verif_map(t_cube *cube)
 	while (line[i])
 	{
 		if (line[i][0] != 'X' && line[i][0] != '1')
-		{
-			printf("when : %c\n", line[i][0]);
-			printf("here\n");
 			ft_error_parsing_map(cube, "map is not closed");
-		}
 		i++;
 	}
 }
@@ -162,7 +158,6 @@ void	verif_map(t_cube *cube)
 // 	ft_error_parsing(cube, "map not closed.\n");
 // if (line[i][j] == 'X' && (line[i - 1][j] && (line[i - 1][j] != 'X' && line[i - 1][j] != '1')))
 // 	ft_error_parsing(cube, "map not closed.\n");
-
 
 void	check_map(t_cube *cube, int i)
 {
@@ -180,16 +175,12 @@ void	check_map(t_cube *cube, int i)
 			if (is_valid_char(cube->map->grid[i][j]))
 				j++;
 			else
-			{
-				printf("here -> %c \n", cube->map->grid[i][j]);
-				ft_error_parsing_map(cube, "invalid character on map.\n");
-			}
+				ft_error_parsing(cube, "invalid character on map.\n");
 		}
 		i++;
 	}
 	copy_map(cube, temp, i - temp, l);
 	verif_map(cube);
-	print_map(cube->map_cpy->grid);
 }
 
 void	parsing(t_cube *cube)
@@ -202,3 +193,4 @@ void	parsing(t_cube *cube)
 	check_map(cube, i);
 	
 }
+
