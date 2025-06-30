@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 17:00:01 by skock             #+#    #+#             */
-/*   Updated: 2025/06/27 18:19:13 by skock            ###   ########.fr       */
+/*   Updated: 2025/06/30 09:05:04 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_boolean(t_cube *cube)
 		return (1);
 }
 
-t_enum	verif_id_key(char current, char next)
+t_enum	verif_id(char current, char next)
 {
 	if (current == 'N' && next == 'O')
 		return (NO);
@@ -62,7 +62,7 @@ void	check_args(t_cube *cube, int id, int *i, int *j)
 	(*j)--;
 }
 
-void	check_id(t_cube *cube)
+int	check_id(t_cube *cube)
 {
 	int	i;
 	int	j;
@@ -74,19 +74,20 @@ void	check_id(t_cube *cube)
 		j = 0;
 		while (cube->map->grid[i][j])
 		{
-			if (!check_boolean(cube))
-				break ;
 			while (ft_iswhitespace(cube->map->grid[i][j]))
 				j++;
 			if (!ft_is_upper_alpha(cube->map->grid[i][j]))
 				ft_error_parsing(cube, "identification incorrect.\n");
 			else
 			{
-				id = verif_id_key(cube->map->grid[i][j],
-						cube->map->grid[i][j + 1]);
-				check_args(cube, id, &i, &j);
-				j++;
+				id = verif_id(cube->map->grid[i][j], cube->map->grid[i][j + 1]);
+					check_args(cube, id, &i, &j);
+					j++;
 			}
 		}
+		if (!check_boolean(cube))
+			break ;
 	}
+	printf("%d\n", i + 1);
+	return (i + 1);
 }

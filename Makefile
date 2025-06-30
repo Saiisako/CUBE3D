@@ -1,6 +1,6 @@
 NAME = cub3D
 CC = cc
-FLAGS = -Wall -Werror -Wextra -g3 #-fsanitize=address,leak
+FLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address,leak
 RM = rm -rf
 LIBFT = library/libft/libft.a
 LIBFT_FLAGS = -L./library/libft -lft
