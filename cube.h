@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/06/30 13:18:33 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/01 12:00:43 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,32 +71,43 @@ typedef struct s_cube
 
 		////////// PARSING //////////
 
-t_enum	verif_id(char current, char next);
-int		ft_atoi_rgb(const char *str);
-int		ft_is_upper_alpha(int c);
-int		check_boolean(t_cube *cube);
+void	check_duplicate_color(t_cube *cube, int id, char *format);
+void	change_id_color_bool(t_cube *cube, int id, char *format);
+void	check_bottom_map(t_cube *cube, char **tab, int i, int j);
+void	check_duplicate_path(t_cube *cube, int id, char *path);
+void	change_id_path_bool(t_cube *cube, int id, char *path);
+void	check_colors(t_cube *cube, int id, int *i, int *j);
+void	verif_rgb(t_cube *cube, char *format, char **rgb);
+void	check_args(t_cube *cube, int id, int *i, int *j);
+void	check_right_map(t_cube *cube, char **tab, int i);
+void	check_format(t_cube *cube, char *format, int id);
+void	check_left_map(t_cube *cube, char **tab, int i);
+void	ft_error_parsing(t_cube *cube, const char *str);
+void	read_map2(const char *file_path, t_cube *cube);
+void	check_top_map(t_cube *cube, char **tab, int i);
+void	read_map(const char *file_path, t_cube *cube);
+void	copy_map(t_cube *cube, int start, int length);
+void	verif_map(t_cube *cube);
 void	is_cub(char	*file_path);
 void	init_colors(t_cube *cube);
 void	ft_error_fd(t_cube *cube);
-void	ft_error_parsing(t_cube *cube, const char *str);
 void	parsing(t_cube *cube);
-void	read_map2(const char *file_path, t_cube *cube);
-void	read_map(const char *file_path, t_cube *cube);
 void	free_array(char **array);
 void	free_all(t_cube *cube);
 void	init_struct(t_cube *cube, char **av);
 void	check_path(t_cube *cube, int id, int *i, int *j);
-void	change_id_path_bool(t_cube *cube, int id, char *path);;
-void	check_duplicate_path(t_cube *cube, int id, char *path);
-void	check_args(t_cube *cube, int id, int *i, int *j);
-int		check_id(t_cube *cube);
-void	change_id_color_bool(t_cube *cube, int id, char *format);
-void	verif_rgb(t_cube *cube, char *format, char **rgb);
-void	check_format(t_cube *cube, char *format, int id);
-void	check_colors(t_cube *cube, int id, int *i, int *j);
-void	check_duplicate_color(t_cube *cube, int id, char *format);
 void	check_map(t_cube *cube, int i);
 void	ft_error_parsing_map(t_cube *cube, const char *str);
+int		get_longest_line(char **map, int i);
+int		update_start(t_cube *cube, int start);
+int		update_height(t_cube *cube, int start);
+int		ft_atoi_rgb(const char *str);
+int		ft_is_upper_alpha(int c);
+int		check_boolean(t_cube *cube);
+int		check_id(t_cube *cube);
+int		is_valid_start(char *line);
+int		is_valid_char(char c);
+t_enum	verif_id(char current, char next);
 
 		////////// GAME //////////
 

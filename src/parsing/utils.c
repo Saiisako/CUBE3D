@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:56:47 by skock             #+#    #+#             */
-/*   Updated: 2025/06/27 16:57:32 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/01 11:55:16 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,29 @@ int	ft_is_upper_alpha(int c)
 {
 	if ((c >= 'A' && c <= 'Z'))
 		return (1);
+	return (0);
+}
+
+int	is_valid_char(char c)
+{
+	if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == ' '
+		|| c == 'W' || c == '\n')
+		return (1);
+	else
+		return (0);
+}
+
+int	is_valid_start(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '0' || line[i] == '1' || line[i] == 'N'
+			|| line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
+			return (1);
+		i++;
+	}
 	return (0);
 }

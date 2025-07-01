@@ -15,6 +15,7 @@ SRCS	=	main.c\
 			src/parsing/verif_id.c\
 			src/parsing/verif_path.c\
 			src/parsing/utils.c\
+			src/parsing/check_borders.c\
 			src/game/graphic.c\
 
 
@@ -42,7 +43,7 @@ define PRINT_LOADING
 		printf "] $$(($$i*5))%%$(RESET)"; \
 	done
 	@echo "\r$(GREEN)Compiling... [####################] 100%%$(RESET)"
-	@clear
+	#@clear
 endef
 
 $(NAME): $(LIBFT) $(OBJ_DIRS) $(OBJS)

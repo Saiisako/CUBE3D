@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 17:00:01 by skock             #+#    #+#             */
-/*   Updated: 2025/06/30 09:05:04 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/01 11:42:45 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,12 @@ int	check_id(t_cube *cube)
 			else
 			{
 				id = verif_id(cube->map->grid[i][j], cube->map->grid[i][j + 1]);
-					check_args(cube, id, &i, &j);
-					j++;
+				check_args(cube, id, &i, &j);
+				j++;
 			}
 		}
 		if (!check_boolean(cube))
 			break ;
 	}
-	printf("%d\n", i + 1);
 	return (i + 1);
 }
