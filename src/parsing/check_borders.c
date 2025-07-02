@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 11:47:16 by skock             #+#    #+#             */
-/*   Updated: 2025/07/01 12:02:23 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/02 10:04:24 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	check_left_map(t_cube *cube, char **tab, int i)
 			continue ;
 		}
 		if (tab[i][0] != 'X' && tab[i][0] != '1')
-			ft_error_parsing_map(cube, "map is not closed");
+			ft_error_parsing_map(cube, "map is not closed.");
 		if (tab[i][1] != 'X' && tab[i][1] != '1')
-			ft_error_parsing_map(cube, "map is not closed");
+			ft_error_parsing_map(cube, "map is not closed.");
 		i++;
 	}
 }
@@ -85,16 +85,18 @@ void	check_bottom_map(t_cube *cube, char **tab, int i, int j)
 	}
 }
 
-void	check_x(t_cube *cube)
+int	is_border(t_cube *cube, int i, int j)
 {
-
-}
-
-void	verif_map(t_cube *cube)
-{
-	check_left_map(cube, cube->map_cpy->grid, 0);
-	check_right_map(cube, cube->map_cpy->grid, 0);
-	check_top_map(cube, cube->map_cpy->grid, 0);
-	check_bottom_map(cube, cube->map_cpy->grid, 0, 0);
-	check_x(cube);
+	if ((i >= 0 && i <= cube->map_cpy->grid_height) && (j == 0))
+		return (1);
+	else if ((i >= 0 && i <= cube->map_cpy->grid_height)
+		&& (j == (cube->map_cpy->grid_length - 1)))
+		return (1);
+	else if ((i == 0) && (j >= 0 && j <= cube->map_cpy->grid_length))
+		return (1);
+	else if ((i == (cube->map_cpy->grid_height - 1))
+		&& (j >= 0 && j <= (cube->map_cpy->grid_length - 1)))
+		return (1);
+	else
+		return (0);
 }

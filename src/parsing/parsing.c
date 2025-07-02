@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:15:24 by skock             #+#    #+#             */
-/*   Updated: 2025/07/01 11:56:57 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/02 10:20:30 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,6 @@ void	print_map(char **map)
 		printf("%s\n", map[i++]);
 }
 
-// if (line[i][j] == 'X' && (line[i][j + 1] && ((line[i][j + 1] != 'X') && (line[i][j + 1] != '1'))))
-// 	ft_error_parsing(cube, "map not closed.\n");
-// if (line[i][j] == 'X' && (line[i][j - 1] && ((line[i][j - 1] != 'X') && (line[i][j - 1] != '1'))))
-// 	ft_error_parsing(cube, "map not closed.\n");
-// if (line[i][j] == 'X' && (line[i + 1][j] && (line[i + 1][j] != 'X' && line[i + 1][j] != '1')))
-// 	ft_error_parsing(cube, "map not closed.\n");
-// if (line[i][j] == 'X' && (line[i - 1][j] && (line[i - 1][j] != 'X' && line[i - 1][j] != '1')))
-// 	ft_error_parsing(cube, "map not closed.\n");
-
 void	check_map(t_cube *cube, int i)
 {
 	int	j;
@@ -85,13 +76,17 @@ void	check_map(t_cube *cube, int i)
 		j = 0;
 		while (cube->map->grid[i][j])
 		{
-			if (is_valid_char(cube->map->grid[i][j]))
+			if (is_valid_char(cube, cube->map->grid[i][j]))
 				j++;
 			else
-				ft_error_parsing(cube, "invalid character on map.\n");
+				ft_error_parsing(cube, "invalid character on map.");
 		}
 		i++;
 	}
+	if (cube->count == 0)
+		ft_error_parsing(cube, "no player start position found.");
+	else if (cube->count > 1)
+		ft_error_parsing(cube, "duplicate player start position found.");
 	copy_map(cube, temp, l);
 	verif_map(cube);
 }

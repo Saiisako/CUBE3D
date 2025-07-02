@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:13:52 by skock             #+#    #+#             */
-/*   Updated: 2025/07/01 11:51:34 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/02 10:05:00 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	read_map(const char *file_path, t_cube *cube)
 		ft_error_fd(cube);
 	i = 0;
 	line = get_next_line(fd);
+	if (line == NULL)
+		ft_error_parsing_empty_map(cube, "map is empty");
 	while (line != NULL)
 	{
 		i++;

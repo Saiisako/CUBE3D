@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/01 12:00:43 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/02 10:43:16 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct s_cube
 	t_map	*map_cpy;
 	t_color	*color_f;
 	t_color	*color_c;
+	int		count;
 }			t_cube;
 
 ///////////////// FUNCTIONS /////////////////
@@ -98,6 +99,10 @@ void	init_struct(t_cube *cube, char **av);
 void	check_path(t_cube *cube, int id, int *i, int *j);
 void	check_map(t_cube *cube, int i);
 void	ft_error_parsing_map(t_cube *cube, const char *str);
+void	print_map(char **map);
+void	is_enclosed_map(t_cube *cube, int i, int j);
+void	check_x(t_cube *cube);
+void	ft_error_parsing_empty_map(t_cube *cube, const char *str);
 int		get_longest_line(char **map, int i);
 int		update_start(t_cube *cube, int start);
 int		update_height(t_cube *cube, int start);
@@ -106,8 +111,11 @@ int		ft_is_upper_alpha(int c);
 int		check_boolean(t_cube *cube);
 int		check_id(t_cube *cube);
 int		is_valid_start(char *line);
-int		is_valid_char(char c);
+int		is_valid_char(t_cube *cube, char c);
+int		is_border(t_cube *cube, int i, int j);
+char	*ft_strdup_set(const char *line, int end);
 t_enum	verif_id(char current, char next);
+void	error_comma(t_cube *cube, char *format);
 
 		////////// GAME //////////
 

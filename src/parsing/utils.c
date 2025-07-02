@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:56:47 by skock             #+#    #+#             */
-/*   Updated: 2025/07/01 11:55:16 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/02 10:25:25 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,18 @@ int	ft_is_upper_alpha(int c)
 	return (0);
 }
 
-int	is_valid_char(char c)
+int	is_valid_char(t_cube *cube, char c)
 {
 	if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == ' '
 		|| c == 'W' || c == '\n')
+	{
+		if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		{
+			cube->count++;
+			return (1);
+		}
 		return (1);
+	}
 	else
 		return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 17:00:01 by skock             #+#    #+#             */
-/*   Updated: 2025/07/01 11:42:45 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/02 10:05:32 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_enum	verif_id(char current, char next)
 void	check_args(t_cube *cube, int id, int *i, int *j)
 {
 	if (!id)
-		ft_error_parsing(cube, "identification incorrect.\n");
+		ft_error_parsing(cube, "identification incorrect.");
 	if (id == NO || id == SO || id == WE || id == EA)
 	{
 		(*j) += 2;
@@ -77,7 +77,7 @@ int	check_id(t_cube *cube)
 			while (ft_iswhitespace(cube->map->grid[i][j]))
 				j++;
 			if (!ft_is_upper_alpha(cube->map->grid[i][j]))
-				ft_error_parsing(cube, "identification incorrect.\n");
+				ft_error_parsing(cube, "identification incorrect.");
 			else
 			{
 				id = verif_id(cube->map->grid[i][j], cube->map->grid[i][j + 1]);

@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:59:08 by skock             #+#    #+#             */
-/*   Updated: 2025/06/27 18:12:25 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/02 10:42:51 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ void	verif_rgb(t_cube *cube, char *format, char **rgb)
 	{
 		free_array(rgb);
 		free(format);
-		ft_error_parsing(cube, "rgb color format is not respected (X,X,X).\n");
+		ft_error_parsing(cube, "RGB color format must be 0-250 (X,X,X).");
 	}
 	else if (cube->color_f->r_color < 0 || cube->color_f->g_color < 0
 		|| cube->color_f->b_color < 0)
 	{
 		free_array(rgb);
 		free(format);
-		ft_error_parsing(cube, "rgb color format is not respected (X,X,X).\n");
+		ft_error_parsing(cube, "RGB color format must be 0-250 (X,X,X).");
 	}
 }
 
@@ -68,14 +68,17 @@ void	check_format(t_cube *cube, char *format, int id)
 	int		i;
 
 	i = 0;
+	error_comma(cube, format);
 	rgb = ft_split(format, ',');
+	while (rgb[i])
+		i++;
 	while (rgb[i])
 		i++;
 	if (i != 3)
 	{
 		free(format);
 		free_array(rgb);
-		ft_error_parsing(cube, "rgb color format is not respected (X,X,X).\n");
+		ft_error_parsing(cube, "rgb color format is not respected (X,X,X).");
 	}
 	fill_rgb_struct(cube, format, rgb, id);
 	if (rgb)

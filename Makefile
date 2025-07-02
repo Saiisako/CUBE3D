@@ -1,6 +1,6 @@
 NAME = cub3D
 CC = cc
-FLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address,leak
+FLAGS = -Wall -Werror -Wextra -g3 #-fsanitize=address,leak
 RM = rm -rf
 LIBFT = library/libft/libft.a
 LIBFT_FLAGS = -L./library/libft -lft
@@ -16,6 +16,8 @@ SRCS	=	main.c\
 			src/parsing/verif_path.c\
 			src/parsing/utils.c\
 			src/parsing/check_borders.c\
+			src/parsing/check_map.c\
+			src/parsing/utils2.c\
 			src/game/graphic.c\
 
 

@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:12:21 by skock             #+#    #+#             */
-/*   Updated: 2025/06/27 16:54:27 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/02 10:17:08 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,5 @@ void	init_struct(t_cube *cube, char **av)
 	cube->id->ea_bool = false;
 	cube->id->f_bool = false;
 	cube->id->c_bool = false;
+	cube->count = 0;
 }

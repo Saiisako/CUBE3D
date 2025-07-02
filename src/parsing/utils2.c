@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 11:52:42 by skock             #+#    #+#             */
-/*   Updated: 2025/07/01 11:52:56 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/02 10:05:09 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	update_start(t_cube *cube, int start)
 		}
 		start++;
 	}
-	ft_error_parsing(cube, "No map detected.\n");
+	ft_error_parsing(cube, "No map detected.");
 	return (start);
 }
 
