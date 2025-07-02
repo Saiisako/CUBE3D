@@ -3,16 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   malloc_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:13:52 by skock             #+#    #+#             */
-/*   Updated: 2025/07/02 10:05:00 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/02 12:49:30 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cube.h"
 
-void	read_map2(const char *file_path, t_cube *cube)
+void	copy_map(t_cube *cube, int start, int length)
+{
+	int	j;
+	int	height;
+
+	j = 0;
+	start = update_start(cube, start);
+	height = update_height(cube, start);
+	cube->map_cpy = malloc(sizeof(t_map));
+	if (!cube->map_cpy)
+		exit(1);
+	cube->map_cpy->grid = malloc(sizeof(char *) * (height + 1));
+	if (!cube->map_cpy->grid)
+		exit(1);
+	while (cube->map->grid[start])
+	{
+		cube->map_cpy->grid[j] = ft_strdup_set(cube->map->grid[start], length);
+		start++;
+		j++;
+	}
+	cube->map_cpy->grid[j] = NULL;
+	cube->map_cpy->grid_height = height;
+	cube->map_cpy->grid_length = length;
+}
+
+static void	read_map2(const char *file_path, t_cube *cube)
 {
 	int		i;
 	int		fd;
@@ -63,29 +88,4 @@ void	read_map(const char *file_path, t_cube *cube)
 	if (!cube->map->grid)
 		return ;
 	read_map2(file_path, cube);
-}
-
-void	copy_map(t_cube *cube, int start, int length)
-{
-	int	j;
-	int	height;
-
-	j = 0;
-	start = update_start(cube, start);
-	height = update_height(cube, start);
-	cube->map_cpy = malloc(sizeof(t_map));
-	if (!cube->map_cpy)
-		exit(1);
-	cube->map_cpy->grid = malloc(sizeof(char *) * (height + 1));
-	if (!cube->map_cpy->grid)
-		exit(1);
-	while (cube->map->grid[start])
-	{
-		cube->map_cpy->grid[j] = ft_strdup_set(cube->map->grid[start], length);
-		start++;
-		j++;
-	}
-	cube->map_cpy->grid[j] = NULL;
-	cube->map_cpy->grid_height = height;
-	cube->map_cpy->grid_length = length;
 }

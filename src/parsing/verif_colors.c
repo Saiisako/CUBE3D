@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:59:08 by skock             #+#    #+#             */
-/*   Updated: 2025/07/02 10:42:51 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/02 12:42:52 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	change_id_color_bool(t_cube *cube, int id, char *format)
 	}
 }
 
-void	verif_rgb(t_cube *cube, char *format, char **rgb)
+static void	verif_rgb(t_cube *cube, char *format, char **rgb)
 {
 	if (cube->color_c->r_color < 0 || cube->color_c->g_color < 0
 		|| cube->color_c->b_color < 0)
@@ -44,7 +44,7 @@ void	verif_rgb(t_cube *cube, char *format, char **rgb)
 	}
 }
 
-void	fill_rgb_struct(t_cube *cube, char *format, char **rgb, int id)
+static void	fill_rgb_struct(t_cube *cube, char *format, char **rgb, int id)
 {
 	if (id == F)
 	{
@@ -62,13 +62,13 @@ void	fill_rgb_struct(t_cube *cube, char *format, char **rgb, int id)
 	}
 }
 
-void	check_format(t_cube *cube, char *format, int id)
+static void	check_format(t_cube *cube, char *format, int id)
 {
 	char	**rgb;
 	int		i;
 
 	i = 0;
-	error_comma(cube, format);
+	check_comma(cube, format);
 	rgb = ft_split(format, ',');
 	while (rgb[i])
 		i++;

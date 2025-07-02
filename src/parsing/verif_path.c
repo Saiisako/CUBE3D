@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:57:53 by skock             #+#    #+#             */
-/*   Updated: 2025/07/02 10:43:27 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/02 12:49:42 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	check_duplicate_color(t_cube *cube, int id, char *format)
 	}
 }
 
-void	check_duplicate_path(t_cube *cube, int id, char *path)
+static void	check_duplicate_path(t_cube *cube, int id, char *path)
 {
 	if (id == NO && cube->id->no_bool == true)
 	{
@@ -50,7 +50,7 @@ void	check_duplicate_path(t_cube *cube, int id, char *path)
 	}
 }
 
-void	change_id_path_bool(t_cube *cube, int id, char *path)
+static void	change_id_path_bool(t_cube *cube, int id, char *path)
 {
 	if (id == NO)
 	{

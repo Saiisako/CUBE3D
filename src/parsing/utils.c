@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:56:47 by skock             #+#    #+#             */
-/*   Updated: 2025/07/02 10:25:25 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/02 12:34:40 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cube.h"
+
+int	ft_is_upper_alpha(int c)
+{
+	if ((c >= 'A' && c <= 'Z'))
+		return (1);
+	return (0);
+}
 
 int	ft_atoi_rgb(const char *str)
 {
@@ -35,13 +42,6 @@ int	ft_atoi_rgb(const char *str)
 	if (result > 255 || result < 0)
 		return (-1);
 	return (result);
-}
-
-int	ft_is_upper_alpha(int c)
-{
-	if ((c >= 'A' && c <= 'Z'))
-		return (1);
-	return (0);
 }
 
 int	is_valid_char(t_cube *cube, char c)

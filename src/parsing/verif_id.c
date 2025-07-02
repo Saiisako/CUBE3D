@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   verif_id.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 17:00:01 by skock             #+#    #+#             */
-/*   Updated: 2025/07/02 10:05:32 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/02 12:22:17 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cube.h"
 
-int	check_boolean(t_cube *cube)
+static int	check_boolean(t_cube *cube)
 {
 	if (cube->id->no_bool && cube->id->so_bool && cube->id->we_bool
 		&& cube->id->ea_bool && cube->id->f_bool && cube->id->c_bool)
@@ -21,25 +21,7 @@ int	check_boolean(t_cube *cube)
 		return (1);
 }
 
-t_enum	verif_id(char current, char next)
-{
-	if (current == 'N' && next == 'O')
-		return (NO);
-	else if (current == 'S' && next == 'O')
-		return (SO);
-	else if (current == 'W' && next == 'E')
-		return (WE);
-	else if (current == 'E' && next == 'A')
-		return (EA);
-	else if (current == 'F' && ft_iswhitespace(next))
-		return (F);
-	else if (current == 'C' && ft_iswhitespace(next))
-		return (C);
-	else
-		return (0);
-}
-
-void	check_args(t_cube *cube, int id, int *i, int *j)
+static void	check_args(t_cube *cube, int id, int *i, int *j)
 {
 	if (!id)
 		ft_error_parsing(cube, "identification incorrect.");
@@ -60,6 +42,24 @@ void	check_args(t_cube *cube, int id, int *i, int *j)
 	while (cube->map->grid[*i][*j])
 		(*j)++;
 	(*j)--;
+}
+
+static t_enum	verif_id(char current, char next)
+{
+	if (current == 'N' && next == 'O')
+		return (NO);
+	else if (current == 'S' && next == 'O')
+		return (SO);
+	else if (current == 'W' && next == 'E')
+		return (WE);
+	else if (current == 'E' && next == 'A')
+		return (EA);
+	else if (current == 'F' && ft_iswhitespace(next))
+		return (F);
+	else if (current == 'C' && ft_iswhitespace(next))
+		return (C);
+	else
+		return (0);
 }
 
 int	check_id(t_cube *cube)

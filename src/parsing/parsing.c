@@ -3,29 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:15:24 by skock             #+#    #+#             */
-/*   Updated: 2025/07/02 10:20:30 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/02 12:39:49 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cube.h"
 
-void	is_cub(char	*file_path)
+void	print_map(char **map)
 {
 	int	i;
 
 	i = 0;
-	while (file_path[i] != '\0')
-		i++;
-	if (i <= 4)
-		ft_error_parsing(NULL, "Invalid file. Extension must be '.cub'.");
-	if (file_path[i - 1] == 'b' && file_path[i - 2] == 'u'
-		&& file_path[i - 3] == 'c' && file_path[i - 4] == '.')
-		return ;
-	else
-		ft_error_parsing(NULL, "Invalid file. Extension must be '.cub'.");
+	while (map[i])
+		printf("%s\n", map[i++]);
 }
 
 char	*ft_strdup_set(const char *line, int end)
@@ -54,16 +47,7 @@ char	*ft_strdup_set(const char *line, int end)
 	return (new_line);
 }
 
-void	print_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-		printf("%s\n", map[i++]);
-}
-
-void	check_map(t_cube *cube, int i)
+static void	check_map(t_cube *cube, int i)
 {
 	int	j;
 	int	temp;
@@ -89,6 +73,22 @@ void	check_map(t_cube *cube, int i)
 		ft_error_parsing(cube, "duplicate player start position found.");
 	copy_map(cube, temp, l);
 	verif_map(cube);
+}
+
+static void	is_cub(char	*file_path)
+{
+	int	i;
+
+	i = 0;
+	while (file_path[i] != '\0')
+		i++;
+	if (i <= 4)
+		ft_error_parsing(NULL, "Invalid file. Extension must be '.cub'.");
+	if (file_path[i - 1] == 'b' && file_path[i - 2] == 'u'
+		&& file_path[i - 3] == 'c' && file_path[i - 4] == '.')
+		return ;
+	else
+		ft_error_parsing(NULL, "Invalid file. Extension must be '.cub'.");
 }
 
 void	parsing(t_cube *cube)

@@ -3,89 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   check_borders.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 11:47:16 by skock             #+#    #+#             */
-/*   Updated: 2025/07/02 10:04:24 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/02 12:17:47 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cube.h"
 
-void	check_left_map(t_cube *cube, char **tab, int i)
+static void	is_enclosed_map(t_cube *cube, int i, int j)
 {
-	while (tab[i])
-	{
-		if (tab[i][0] == '1')
-		{
-			i++;
-			continue ;
-		}
-		if (tab[i][0] != 'X' && tab[i][0] != '1')
-			ft_error_parsing_map(cube, "map is not closed.");
-		if (tab[i][1] != 'X' && tab[i][1] != '1')
-			ft_error_parsing_map(cube, "map is not closed.");
-		i++;
-	}
+	char	**tab;
+
+	tab = cube->map_cpy->grid;
+	if (tab[i][j] == 'X' && ((tab[i][j + 1] != 'X') && (tab[i][j + 1] != '1')))
+		ft_error_parsing_map(cube, "map not closed.");
+	if (tab[i][j] == 'X' && ((tab[i][j - 1] != 'X') && (tab[i][j - 1] != '1')))
+		ft_error_parsing_map(cube, "map not closed.");
+	if (tab[i][j] == 'X' && (tab[i + 1][j] != 'X' && tab[i + 1][j] != '1'))
+		ft_error_parsing_map(cube, "map not closed.");
+	if (tab[i][j] == 'X' && (tab[i - 1][j] != 'X' && tab[i - 1][j] != '1'))
+		ft_error_parsing_map(cube, "map not closed.");
 }
 
-void	check_right_map(t_cube *cube, char **tab, int i)
-{
-	while (tab[i])
-	{
-		if (tab[i][cube->map_cpy->grid_length - 1] == '1')
-		{
-			i++;
-			continue ;
-		}
-		if (tab[i][cube->map_cpy->grid_length - 1] != 'X'
-			&& tab[i][cube->map_cpy->grid_length - 1] != '1')
-			ft_error_parsing_map(cube, "map is not closed");
-		if (tab[i][cube->map_cpy->grid_length - 2] != 'X'
-			&& tab[i][cube->map_cpy->grid_length - 2] != '1')
-			ft_error_parsing_map(cube, "map is not closed");
-		i++;
-	}
-}
-
-void	check_top_map(t_cube *cube, char **tab, int i)
-{
-	while (tab[0][i])
-	{
-		if (tab[0][i] == '1')
-		{
-			i++;
-			continue ;
-		}
-		if (tab[0][i] != 'X' && tab[0][i] != '1')
-			ft_error_parsing_map(cube, "map is not closed");
-		if (tab[1][i] != 'X' && tab[1][i] != '1')
-			ft_error_parsing_map(cube, "map is not closed");
-		i++;
-	}
-}
-
-void	check_bottom_map(t_cube *cube, char **tab, int i, int j)
-{
-	while (tab[i])
-		i++;
-	--i;
-	while (tab[i][j])
-	{
-		if (tab[i][j] == '1')
-		{
-			j++;
-			continue ;
-		}
-		if (tab[i][j] != 'X' && tab[i][j] != '1')
-			ft_error_parsing_map(cube, "map is not closed");
-		if (tab[i - 1][j] != 'X' && tab[i - 1][j] != '1')
-			ft_error_parsing_map(cube, "map is not closed");
-		j++;
-	}
-}
-
-int	is_border(t_cube *cube, int i, int j)
+static int	is_border(t_cube *cube, int i, int j)
 {
 	if ((i >= 0 && i <= cube->map_cpy->grid_height) && (j == 0))
 		return (1);
@@ -99,4 +41,30 @@ int	is_border(t_cube *cube, int i, int j)
 		return (1);
 	else
 		return (0);
+}
+
+void	check_x(t_cube *cube)
+{
+	int		i;
+	int		j;
+	char	**tab;
+
+	i = 0;
+	tab = cube->map_cpy->grid;
+	while (tab[i])
+	{
+		j = 0;
+		while (tab[i][j])
+		{
+			if (is_border(cube, i, j))
+			{
+				j++;
+				continue ;
+			}
+			is_enclosed_map(cube, i, j);
+			j++;
+		}
+		i++;
+	}
+	ft_error_parsing_map(cube, "map is correct\n");
 }
