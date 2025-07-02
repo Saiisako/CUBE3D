@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/02 12:48:35 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/02 13:34:14 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include "library/gnl/get_next_line.h"
 # include "library/libft/libft.h"
 # include "library/printf/ft_printf.h"
+# include "minilibx-linux/mlx.h"
+# include "minilibx-linux/mlx_int.h"
 # include <stdbool.h>
 
 typedef enum s_enum

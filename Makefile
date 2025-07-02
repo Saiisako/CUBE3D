@@ -4,6 +4,7 @@ FLAGS = -Wall -Werror -Wextra -g3 #-fsanitize=address,leak
 RM = rm -rf
 LIBFT = library/libft/libft.a
 LIBFT_FLAGS = -L./library/libft -lft
+MLX_FLAGS = -L./minilibx-linux -lmlx -lbsd -lXext -lX11 -lm
 
 SRCS	=	main.c\
 			src/parsing/error.c\
@@ -50,7 +51,7 @@ endef
 
 $(NAME): $(LIBFT) $(OBJ_DIRS) $(OBJS)
 	@$(PRINT_LOADING)
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJS) $(LIBFT_FLAGS)
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJS) $(LIBFT_FLAGS) $(MLX_FLAGS)
 	@echo " ██████╗██╗   ██╗██████╗ ███████╗$(GREEN)██████╗ ██████╗ $(RESET)"
 	@echo "██╔════╝██║   ██║██╔══██╗██╔════╝$(GREEN)╚════██╗██╔══██╗$(RESET)"
 	@echo "██║     ██║   ██║██████╔╝█████╗  $(GREEN) █████╔╝██║  ██║$(RESET)"
@@ -69,6 +70,10 @@ obj/%.o: %.c | $(OBJ_DIRS)
 
 all: $(NAME)
 
+minilibx :
+	@git clone "https://github.com/42Paris/minilibx-linux.git"
+	cd minilibx-linux && make
+
 clear:
 	@$(RM) $(OBJS)
 
@@ -81,4 +86,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re clear
+.PHONY: all minilibx clean fclean re clear
