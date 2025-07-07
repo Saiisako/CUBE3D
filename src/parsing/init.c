@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:12:21 by skock             #+#    #+#             */
-/*   Updated: 2025/07/02 12:32:03 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/07 13:23:42 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,17 @@ static void	init_colors(t_cube *cube)
 	cube->color_c->b_color = 0;
 }
 
+static void	init_player(t_cube *cube)
+{
+	cube->player->dir = 0;
+	cube->player->player_x = 0;
+	cube->player->player_y = 0;
+	cube->player->dir_x = 0;
+	cube->player->dir_y = 0;
+	cube->player->plane_x = 0;
+	cube->player->plane_y = 0;
+}
+
 void	init_struct(t_cube *cube, char **av)
 {
 	cube->id = malloc(sizeof(t_id));
@@ -33,7 +44,11 @@ void	init_struct(t_cube *cube, char **av)
 	cube->color_c = malloc(sizeof(t_color));
 	if (!cube->color_c)
 		exit(1);
+	cube->player = malloc(sizeof(t_player));
+	if (!cube->player)
+		exit(1);
 	init_colors(cube);
+	init_player(cube);
 	cube->av = av;
 	cube->file_path = av[1];
 	cube->id->no_bool = false;

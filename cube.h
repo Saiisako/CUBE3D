@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/02 13:34:14 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/07 13:25:00 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,17 @@ typedef struct s_map
 	int		grid_height;
 }			t_map;
 
+typedef struct s_player
+{
+	char	dir;
+	double	player_x;
+	double	player_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+}	t_player;
+
 typedef struct s_cube
 {
 	char	**av;
@@ -68,7 +79,27 @@ typedef struct s_cube
 	t_color	*color_f;
 	t_color	*color_c;
 	int		count;
+	t_player	*player;
 }			t_cube;
+
+// dir_x et dir_y: vecteur direction du joueur (vers la ou il regarde)
+// si le joueur regarde vers N dir_x = 0 dir_y = -1
+// si le joueur regarde vers S dir_x = 0 dir_y = +1
+// si le joueur regarde vers E dir_x = +1 dir_y = 0
+// si le joueur regarde vers W dir_x = -1 dir_y = 0
+
+// plane_x et plane_y :champs de vision du joueur, perpendiculaire a dir, represente le plan de la camera
+// vecteur perpendiculaire a (x, y) est (-y, x) quon doit multiplier par FOV (environ 0.66 car un champs de vision reliste cest 66°) donc;
+// si le joueur regarde vers N (plane_x = 1 plane_y = 0) * 0.66 = (plane_x = 0.66 plane_y = 0)
+// si le joueur regarde vers S (plane_x = -1 plane_y = 0) * 0.66 = (plane_x = -0.66 plane_y = 0)
+// si le joueur regarde vers E (plane_x = 0 plane_y = 1) * 0.66 = (plane_x = 0 plane_y = 0.66)
+// si le joueur regarde vers W (plane_x = 0 plane_y = -1) * 0.66 = (plane_x = 0 plane_y = -0.66)
+// finalement :
+// plane_x = -dir_y * 0.66;
+// plane_y = dir_x * 0.66;
+
+// pour initialiser la position du joueur avec son vecteur dir et plane, il faut pouvoir recuperer  N S E W et la structure player
+// Pour ca au niveau du parsing il faut recuperer la position du joueur avec ses coordonnees + l orientation donc stocker N S E ou W donc une variable
 
 ///////////////// FUNCTIONS /////////////////
 
@@ -107,7 +138,9 @@ void	ft_error_parsing_map(t_cube *cube, const char *str);
 void	ft_error_parsing_empty_map(t_cube *cube, const char *str);
 
 		////////// GAME //////////
-
 void	graphic(t_cube *cube);
 
+// INIT PLAYER
+void	find_player_position(t_cube *cube);
+void	init_player_position(t_cube *cube);
 #endif

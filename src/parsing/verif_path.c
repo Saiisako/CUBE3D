@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:57:53 by skock             #+#    #+#             */
-/*   Updated: 2025/07/02 12:49:42 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/07 12:46:57 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,11 @@ void	check_path(t_cube *cube, int id, int *i, int *j)
 	path = ft_substr(cube->map->grid[*i], (*j),
 			(ft_strlen(cube->map->grid[*i]) - (*j)));
 	fd = open(path, O_RDONLY);
-	if (fd < 0)
-	{
-		free(path);
-		ft_error_parsing(cube, "cannot find texture's path.");
-	}
+	// if (fd < 0)
+	// {
+	// 	free(path);
+	// 	ft_error_parsing(cube, "cannot find texture's path.");
+	// }
 	change_id_path_bool(cube, id, path);
 	free(path);
 }

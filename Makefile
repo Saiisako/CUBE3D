@@ -20,6 +20,8 @@ SRCS	=	main.c\
 			src/parsing/check_map.c\
 			src/parsing/utils2.c\
 			src/game/graphic.c\
+			src/game/init_player.c\
+
 
 
 RED = \033[0;31m
