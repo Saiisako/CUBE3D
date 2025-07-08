@@ -28,6 +28,17 @@ plane_y = dir_x * 0.66;
 pour initialiser la position du joueur avec son vecteur dir et plane, il faut pouvoir recuperer  N S E W + position du joueur
 Pour ca au niveau du parsing il faut recuperer la position du joueur avec ses coordonnees + l orientation donc stocker N S E ou W donc une variable -> voir file init_player
 
+<!-- Objectif : envoyer des rayons par colonne sur tout le champs de vision FOV : -->
+
+FOV s'etend de x = 0(premiere colonne) a x = largeur de la camera - 1 (ex: si la largeur de la camera(fenetre) fait 800 on commence a x = 0 jusqua x = 799)
+cameraX = 2 * x / (double)screenWidth - 1; cette formule permet de repartir les rayons sur tout le FOV en normalisant la largeur de l ecran de x = -1 a x = +1 avec x = 0 la position du joueur. pq normalise la largeur ? pour qu elle soit independante de la resolution, sinon on devrait faire nos calculs a partir de la resolution et avoir un resultat deforme si la resolution est modifiee, on n a pas besoin de cameraY car on envoie les rayons sur chaque colonne donc juste besoin du x
+ca va nous permettre d obtenir les coordonnees de chaque rayon envoyes ()
+
+pour obtenir la coordonnee de la direction du rayon raydir = (vecteur direction du joueur) + (vecteur plane * cameraX)
+(vecteur plane * cameraX) cette partie permet d obtenir la portion du vecteur plane correspondant a la position ou arrive le rayon en question
+donc si on veut raydirx ca sera : raydirx = dir_x + (plane * cameraX)
+donc si on veut raydiry ca sera : raydiry = dir_y + (plane * cameraX)
+
 <!-- Pour GRAPHIQUE : -->
 
 - Ctrl + D = Selectionner prochaine occurance.

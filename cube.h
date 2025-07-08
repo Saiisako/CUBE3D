@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/07 13:25:00 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/08 13:32:44 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,14 @@ typedef struct s_map
 	int		grid_length;
 	int		grid_height;
 }			t_map;
+
+typedef struct s_ray
+{
+	double	camerax;
+	double	ray_dir_x;
+	double	ray_dir_y;
+
+}t_ray;
 
 typedef struct s_player
 {
