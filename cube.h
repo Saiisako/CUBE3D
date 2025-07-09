@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/08 13:32:44 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/09 18:00:59 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 # include "minilibx-linux/mlx.h"
 # include "minilibx-linux/mlx_int.h"
 # include <stdbool.h>
+
+#define WIN_WIDTH 720
+#define WIN_HEIGHT 400
 
 typedef enum s_enum
 {
@@ -63,8 +66,38 @@ typedef struct s_ray
 	double	camerax;
 	double	ray_dir_x;
 	double	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	int		step_x;
+	int		step_y;
+	int	hit;
+	int	side;
+	// double	perp_wall_dist; // distance perpendiculaire au mur pour la dessiner
 
 }t_ray;
+
+// typedef struct s_ray
+// {
+// 	double	camerax; // ray_dir_x = dir_x + plane_x * cameraX; ray_dir_y = dir_y + plane_y * cameraX;
+// 	double	ray_dir_x;
+// 	double	ray_dir_y;
+// 	map_x; // case dans laquelle se trouve le joueur
+// 	map_y;
+// 	delta_dist_x; // distance propre au rayon = disatnce quil faut au rayon pour atteindre la prochaine ligne verticale pour chaque rayon cette valeur ne change pas, ca determine le pas avec lequel on avance
+// 	delta_dist_y;
+// 	side_dist_x; // distance entre le joueur et la premiere ligne verticale rencontree, initialisee au debut et ne change pas
+// 	side_dist_y;
+// 	step_x; // direction dans laquelle on va se deplacer en x
+// 	step_y; //direction dans laquelle on va se deplacer en y
+// 	int	hit;
+// 	int	side; // quel cote (vertical ou horizontal) du mur a ete touche ( pour les ombres)
+// 	// double	perp_wall_dist; // distance perpendiculaire au mur pour la dessiner
+
+// }t_ray;
 
 typedef struct s_player
 {
@@ -88,6 +121,7 @@ typedef struct s_cube
 	t_color	*color_c;
 	int		count;
 	t_player	*player;
+	t_ray		*ray;
 }			t_cube;
 
 // dir_x et dir_y: vecteur direction du joueur (vers la ou il regarde)

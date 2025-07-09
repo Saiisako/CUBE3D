@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:12:21 by skock             #+#    #+#             */
-/*   Updated: 2025/07/07 13:23:42 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/09 17:39:59 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,37 @@ static void	init_player(t_cube *cube)
 	cube->player->plane_y = 0;
 }
 
+static void	init_ray(t_cube *cube)
+{
+	cube->ray->camerax = 0;
+	cube->ray->ray_dir_x = 0;
+	cube->ray->ray_dir_y = 0;
+	cube->ray->map_x = 0;
+	cube->ray->map_x = 0;
+	cube->ray->delta_dist_x = 0;
+	cube->ray->delta_dist_y = 0;
+	cube->ray->side_dist_x = 0;
+	cube->ray->side_dist_y = 0;
+	cube->ray->step_x = 0;
+	cube->ray->step_y = 0;
+	cube->ray->hit = 0;
+	cube->ray->side = 0;
+	// cube->ray->perp_wall_dist = 0;
+}
+
+static void	init_cube(t_cube *cube, char **av)
+{
+	cube->av = av;
+	cube->file_path = av[1];
+	cube->id->no_bool = false;
+	cube->id->so_bool = false;
+	cube->id->we_bool = false;
+	cube->id->ea_bool = false;
+	cube->id->f_bool = false;
+	cube->id->c_bool = false;
+	cube->count = 0;
+}
+
 void	init_struct(t_cube *cube, char **av)
 {
 	cube->id = malloc(sizeof(t_id));
@@ -47,15 +78,11 @@ void	init_struct(t_cube *cube, char **av)
 	cube->player = malloc(sizeof(t_player));
 	if (!cube->player)
 		exit(1);
+	cube->ray = malloc(sizeof(t_ray));
+	if (!cube->ray)
+		exit(1);
 	init_colors(cube);
 	init_player(cube);
-	cube->av = av;
-	cube->file_path = av[1];
-	cube->id->no_bool = false;
-	cube->id->so_bool = false;
-	cube->id->we_bool = false;
-	cube->id->ea_bool = false;
-	cube->id->f_bool = false;
-	cube->id->c_bool = false;
-	cube->count = 0;
+	init_ray(cube);
+	init_cube(cube, av);
 }

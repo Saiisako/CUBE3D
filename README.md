@@ -36,8 +36,8 @@ ca va nous permettre d obtenir les coordonnees de chaque rayon envoyes ()
 
 pour obtenir la coordonnee de la direction du rayon raydir = (vecteur direction du joueur) + (vecteur plane * cameraX)
 (vecteur plane * cameraX) cette partie permet d obtenir la portion du vecteur plane correspondant a la position ou arrive le rayon en question
-donc si on veut raydirx ca sera : raydirx = dir_x + (plane * cameraX)
-donc si on veut raydiry ca sera : raydiry = dir_y + (plane * cameraX)
+donc si on veut raydirx ca sera : raydirx = dir_x + (plane_x * cameraX)
+donc si on veut raydiry ca sera : raydiry = dir_y + (plane_y * cameraX)
 
 <!-- Pour GRAPHIQUE : -->
 

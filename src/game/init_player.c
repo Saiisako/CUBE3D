@@ -28,8 +28,8 @@ void	find_player_position(t_cube *cube)
 			if (cube->map_cpy->grid[i][j] == 'N' || cube->map_cpy->grid[i][j] == 'S' ||cube->map_cpy->grid[i][j] == 'E' ||cube->map_cpy->grid[i][j] == 'W')
 			{
 				cube->player->dir = cube->map_cpy->grid[i][j];
-				cube->player->player_x = j;
-				cube->player->player_y = i;
+				cube->player->player_x = j + 0.5;
+				cube->player->player_y = i + 0.5;
 				printf("player x: %f\n", cube->player->player_x);
 				printf("player y: %f\n", cube->player->player_y);
 				printf("char player: %c\n", cube->map_cpy->grid[i][j]);
@@ -64,7 +64,7 @@ void	init_player_position(t_cube *cube)
 	}
 	cube->player->plane_x = -(cube->player->dir_y) * 0.66;
 	cube->player->plane_y = (cube->player->dir_x) * 0.66;
-	
+
 	printf("dir x %f dir y %f\n", cube->player->dir_x, cube->player->dir_y);
 	printf("plane x %f plane y %f\n", cube->player->plane_x, cube->player->plane_y);
 }
