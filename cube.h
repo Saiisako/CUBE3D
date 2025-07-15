@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/15 15:53:08 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/15 16:21:16 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@
 
 #define WIN_WIDTH 720
 #define WIN_HEIGHT 400
+
+typedef struct	s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
 
 typedef enum s_enum
 {
@@ -106,6 +115,10 @@ typedef struct s_cube
 	t_player	*player;
 	t_ray		*ray;
 	char		**path;
+	t_data		*img;
+	void		*mlx;
+	void		*win;
+
 }			t_cube;
 
 

@@ -50,6 +50,9 @@ void	init_game(t_cube *cube)
 	cube->ray = malloc(sizeof(t_ray));
 	if (!cube->ray)
 		exit(1);
+	cube->img = malloc(sizeof(t_data));
+	if (!cube->img)
+		exit(1);
 	init_player(cube);
 	init_ray(cube);
 }
