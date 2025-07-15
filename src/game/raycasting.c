@@ -100,6 +100,14 @@ int	raycasting(t_cube *cube)
 		init_ray_steps(cube);
 		dda_algo(cube); // si pb revoir pourquoi 0.25
 		calculate_line(cube);
+
+		int y = WIN_HEIGHT - cube->ray->line_height - 1;
+		while (y < WIN_HEIGHT)
+		{
+			mlx_pixel_put(cube->mlx, cube->win, x, y, (0xffffff >> 1) & 8355711);
+			y++;
+		}
+
 		//dessiner la colonne
 		x++;
 	}
