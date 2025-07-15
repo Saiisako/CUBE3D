@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:19:39 by skock             #+#    #+#             */
-/*   Updated: 2025/06/26 18:12:30 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/15 12:55:10 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	graphic(t_cube *cube)
 {
-	(void)cube;
+	find_player_position(cube);
+	init_player_position(cube);
+	init_game(cube);
 	return ;
 }

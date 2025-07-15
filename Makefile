@@ -20,6 +20,7 @@ SRCS	=	main.c\
 			src/parsing/check_map.c\
 			src/parsing/utils2.c\
 			src/game/graphic.c\
+			src/game/init_game.c\
 			src/game/init_player.c\
 			src/game/raycasting.c\
 

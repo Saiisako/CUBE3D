@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:41:54 by skock             #+#    #+#             */
-/*   Updated: 2025/07/07 13:23:15 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/15 12:52:59 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int	main(int ac, char **av)
 	{
 		init_struct(cube, av);
 		parsing(cube);
-		find_player_position(cube);
-		init_player_position(cube);
 		graphic(cube);
 		free_all(cube);
 	}

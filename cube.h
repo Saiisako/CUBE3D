@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/09 18:00:59 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/15 12:49:02 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "minilibx-linux/mlx.h"
 # include "minilibx-linux/mlx_int.h"
 # include <stdbool.h>
+# include <math.h>
 
 #define WIN_WIDTH 720
 #define WIN_HEIGHT 400
@@ -181,6 +182,7 @@ void	ft_error_parsing_empty_map(t_cube *cube, const char *str);
 
 		////////// GAME //////////
 void	graphic(t_cube *cube);
+void	init_game(t_cube *cube);
 
 // INIT PLAYER
 void	find_player_position(t_cube *cube);

@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:12:21 by skock             #+#    #+#             */
-/*   Updated: 2025/07/09 17:39:59 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/15 12:33:34 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,34 +22,34 @@ static void	init_colors(t_cube *cube)
 	cube->color_c->b_color = 0;
 }
 
-static void	init_player(t_cube *cube)
-{
-	cube->player->dir = 0;
-	cube->player->player_x = 0;
-	cube->player->player_y = 0;
-	cube->player->dir_x = 0;
-	cube->player->dir_y = 0;
-	cube->player->plane_x = 0;
-	cube->player->plane_y = 0;
-}
+// static void	init_player(t_cube *cube)
+// {
+// 	cube->player->dir = 0;
+// 	cube->player->player_x = 0;
+// 	cube->player->player_y = 0;
+// 	cube->player->dir_x = 0;
+// 	cube->player->dir_y = 0;
+// 	cube->player->plane_x = 0;
+// 	cube->player->plane_y = 0;
+// }
 
-static void	init_ray(t_cube *cube)
-{
-	cube->ray->camerax = 0;
-	cube->ray->ray_dir_x = 0;
-	cube->ray->ray_dir_y = 0;
-	cube->ray->map_x = 0;
-	cube->ray->map_x = 0;
-	cube->ray->delta_dist_x = 0;
-	cube->ray->delta_dist_y = 0;
-	cube->ray->side_dist_x = 0;
-	cube->ray->side_dist_y = 0;
-	cube->ray->step_x = 0;
-	cube->ray->step_y = 0;
-	cube->ray->hit = 0;
-	cube->ray->side = 0;
-	// cube->ray->perp_wall_dist = 0;
-}
+// static void	init_ray(t_cube *cube)
+// {
+// 	cube->ray->camerax = 0;
+// 	cube->ray->ray_dir_x = 0;
+// 	cube->ray->ray_dir_y = 0;
+// 	cube->ray->map_x = 0;
+// 	cube->ray->map_x = 0;
+// 	cube->ray->delta_dist_x = 0;
+// 	cube->ray->delta_dist_y = 0;
+// 	cube->ray->side_dist_x = 0;
+// 	cube->ray->side_dist_y = 0;
+// 	cube->ray->step_x = 0;
+// 	cube->ray->step_y = 0;
+// 	cube->ray->hit = 0;
+// 	cube->ray->side = 0;
+// 	// cube->ray->perp_wall_dist = 0;
+// }
 
 static void	init_cube(t_cube *cube, char **av)
 {
@@ -75,14 +75,14 @@ void	init_struct(t_cube *cube, char **av)
 	cube->color_c = malloc(sizeof(t_color));
 	if (!cube->color_c)
 		exit(1);
-	cube->player = malloc(sizeof(t_player));
-	if (!cube->player)
-		exit(1);
-	cube->ray = malloc(sizeof(t_ray));
-	if (!cube->ray)
-		exit(1);
+	// cube->player = malloc(sizeof(t_player));
+	// if (!cube->player)
+	// 	exit(1);
+	// cube->ray = malloc(sizeof(t_ray));
+	// if (!cube->ray)
+	// 	exit(1);
 	init_colors(cube);
-	init_player(cube);
-	init_ray(cube);
+	// init_player(cube);
+	// init_ray(cube);
 	init_cube(cube, av);
 }
