@@ -28,7 +28,7 @@ void	dda_algo(t_cube *cube)
 			cube->ray->map_y += cube->ray->step_y;
 			cube->ray->side = 1; // horizontal: on a franchi une ligne horizontale donc cest ce cote du mur qui a ete touche
 		}
-		if (cube->map->grid[cube->ray->map_y][cube->ray->map_x] == '1')
+		if (cube->map_cpy->grid[cube->ray->map_y][cube->ray->map_x] == '1')
 			cube->ray->hit = 1;
 	}
 }
@@ -74,6 +74,20 @@ void	init_ray_data(t_cube *cube, int x)
 	cube->ray->delta_dist_y = fabs(1 / cube->ray->ray_dir_y);
 }
 
+void	calculate_line(t_cube *cube)
+{
+	if (cube->ray->side == 0)
+		cube->ray->perp_wall_dist = (cube->ray->map_x
+				- cube->player->player_x + (1 - cube->ray->step_x) / 2)
+			/ cube->ray->ray_dir_x;
+	else
+		cube->ray->perp_wall_dist = (cube->ray->map_y
+				- cube->player->player_y + (1 - cube->ray->step_y) / 2)
+			/ cube->ray->ray_dir_y;
+	cube->ray->line_height = (int)(WIN_HEIGHT / cube->ray->perp_wall_dist);
+}
+
+
 int	raycasting(t_cube *cube)
 {
 	int	x;
@@ -84,8 +98,8 @@ int	raycasting(t_cube *cube)
 		cube->ray->hit = 0;
 		init_ray_data(cube, x);
 		init_ray_steps(cube);
-		dda_algo(cube);
-		//calcul distance
+		dda_algo(cube); // si pb revoir pourquoi 0.25
+		calculate_line(cube);
 		//dessiner la colonne
 		x++;
 	}

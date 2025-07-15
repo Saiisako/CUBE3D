@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:12:21 by skock             #+#    #+#             */
-/*   Updated: 2025/07/15 12:33:34 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/15 16:03:52 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,14 @@ void	init_struct(t_cube *cube, char **av)
 	cube->color_c = malloc(sizeof(t_color));
 	if (!cube->color_c)
 		exit(1);
-	// cube->player = malloc(sizeof(t_player));
-	// if (!cube->player)
-	// 	exit(1);
-	// cube->ray = malloc(sizeof(t_ray));
-	// if (!cube->ray)
-	// 	exit(1);
+	cube->path = malloc(sizeof(char *) * 5);
+	if (!cube->path)
+		exit(1);
+	cube->path[0] = ft_strdup("nothing");
+	cube->path[1] = ft_strdup("nothing");
+	cube->path[2] = ft_strdup("nothing");
+	cube->path[3] = ft_strdup("nothing");
+	cube->path[4] = NULL;
 	init_colors(cube);
-	// init_player(cube);
-	// init_ray(cube);
 	init_cube(cube, av);
 }

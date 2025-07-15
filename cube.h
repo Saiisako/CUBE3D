@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/15 12:49:02 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/15 15:53:08 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,28 +77,10 @@ typedef struct s_ray
 	int		step_y;
 	int	hit;
 	int	side;
-	// double	perp_wall_dist; // distance perpendiculaire au mur pour la dessiner
+	double	perp_wall_dist;
+	double	line_height;
 
 }t_ray;
-
-// typedef struct s_ray
-// {
-// 	double	camerax; // ray_dir_x = dir_x + plane_x * cameraX; ray_dir_y = dir_y + plane_y * cameraX;
-// 	double	ray_dir_x;
-// 	double	ray_dir_y;
-// 	map_x; // case dans laquelle se trouve le joueur
-// 	map_y;
-// 	delta_dist_x; // distance propre au rayon = disatnce quil faut au rayon pour atteindre la prochaine ligne verticale pour chaque rayon cette valeur ne change pas, ca determine le pas avec lequel on avance
-// 	delta_dist_y;
-// 	side_dist_x; // distance entre le joueur et la premiere ligne verticale rencontree, initialisee au debut et ne change pas
-// 	side_dist_y;
-// 	step_x; // direction dans laquelle on va se deplacer en x
-// 	step_y; //direction dans laquelle on va se deplacer en y
-// 	int	hit;
-// 	int	side; // quel cote (vertical ou horizontal) du mur a ete touche ( pour les ombres)
-// 	// double	perp_wall_dist; // distance perpendiculaire au mur pour la dessiner
-
-// }t_ray;
 
 typedef struct s_player
 {
@@ -123,26 +105,9 @@ typedef struct s_cube
 	int		count;
 	t_player	*player;
 	t_ray		*ray;
+	char		**path;
 }			t_cube;
 
-// dir_x et dir_y: vecteur direction du joueur (vers la ou il regarde)
-// si le joueur regarde vers N dir_x = 0 dir_y = -1
-// si le joueur regarde vers S dir_x = 0 dir_y = +1
-// si le joueur regarde vers E dir_x = +1 dir_y = 0
-// si le joueur regarde vers W dir_x = -1 dir_y = 0
-
-// plane_x et plane_y :champs de vision du joueur, perpendiculaire a dir, represente le plan de la camera
-// vecteur perpendiculaire a (x, y) est (-y, x) quon doit multiplier par FOV (environ 0.66 car un champs de vision reliste cest 66°) donc;
-// si le joueur regarde vers N (plane_x = 1 plane_y = 0) * 0.66 = (plane_x = 0.66 plane_y = 0)
-// si le joueur regarde vers S (plane_x = -1 plane_y = 0) * 0.66 = (plane_x = -0.66 plane_y = 0)
-// si le joueur regarde vers E (plane_x = 0 plane_y = 1) * 0.66 = (plane_x = 0 plane_y = 0.66)
-// si le joueur regarde vers W (plane_x = 0 plane_y = -1) * 0.66 = (plane_x = 0 plane_y = -0.66)
-// finalement :
-// plane_x = -dir_y * 0.66;
-// plane_y = dir_x * 0.66;
-
-// pour initialiser la position du joueur avec son vecteur dir et plane, il faut pouvoir recuperer  N S E W et la structure player
-// Pour ca au niveau du parsing il faut recuperer la position du joueur avec ses coordonnees + l orientation donc stocker N S E ou W donc une variable
 
 ///////////////// FUNCTIONS /////////////////
 
@@ -183,6 +148,7 @@ void	ft_error_parsing_empty_map(t_cube *cube, const char *str);
 		////////// GAME //////////
 void	graphic(t_cube *cube);
 void	init_game(t_cube *cube);
+int		raycasting(t_cube *cube);
 
 // INIT PLAYER
 void	find_player_position(t_cube *cube);
