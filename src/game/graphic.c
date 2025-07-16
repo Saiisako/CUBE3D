@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:19:39 by skock             #+#    #+#             */
-/*   Updated: 2025/07/16 18:14:09 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/16 19:26:57 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@ void	init_image(t_cube *cube, t_image *tmp, char *path)
 
 	tmp->img = mlx_xpm_file_to_image(cube->mlx, path, &cube->texture->size, &cube->texture->size);
 	if (!tmp->img)
-	{
-		printf("here\n");
 		exit(1);
-	}
 	tmp->addr = mlx_get_data_addr(tmp->img, &tmp->bits_per_pixel,
 			&tmp->line_length, &tmp->endian);
 	if (!tmp->addr)
@@ -62,7 +59,7 @@ int *xpm_to_image(t_cube *cube, char *path)
 	int y;
 
 	init_image(cube, &tmp, path);
-	buffer = ft_calloc(1, sizeof(int) * TEXTURE_SIZE * TEXTURE_SIZE);
+	buffer = ft_calloc(TEXTURE_SIZE * TEXTURE_SIZE, sizeof(int));
 	if (!buffer)
 		exit(1);
 	y = 0;
@@ -99,7 +96,6 @@ void	graphic(t_cube *cube)
 	cube->win = mlx_new_window(cube->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	init_game(cube);
 	load_textures(cube);
-	printf("hre\n");
 	find_player_position(cube);
 	init_player_position(cube);
 	raycasting(cube);
