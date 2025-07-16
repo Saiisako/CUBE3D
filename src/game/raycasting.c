@@ -96,8 +96,10 @@ void	calculate_line(t_cube *cube)
 	else if (cube->ray->side == HORIZONTAL)
 			cube->ray->wall_x = cube->player->player_x + cube->ray->perp_wall_dist * cube->ray->ray_dir_x;
 	cube->ray->wall_x -= floor(cube->ray->wall_x);
+	printf("%f\n", cube->ray->wall_x);
+	cube->ray->tex_x = (int)cube->ray->wall_x * TEXTURE_SIZE;
+	printf("%f\n", cube->ray->tex_x);
 }
-
 int	raycasting(t_cube *cube)
 {
 	int	x;

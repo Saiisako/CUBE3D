@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:57:53 by skock             #+#    #+#             */
-/*   Updated: 2025/07/16 15:55:35 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/16 17:40:53 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,11 @@ void	stock_path(t_cube *cube, int id, char *path)
 	{
 		free(cube->path[2]);
 		cube->path[EAST] = ft_strdup(path);
-		printf("here EA\npath = %s\n", cube->path[EAST]);
 	}
 	else if (id == WE)
 	{
 		free(cube->path[3]);
 		cube->path[WEST] = ft_strdup(path);
-		printf("here WE \npath = %s\n", cube->path[WEST]);
 	}
 }
 

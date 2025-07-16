@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:19:39 by skock             #+#    #+#             */
-/*   Updated: 2025/07/16 16:42:17 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/16 18:14:09 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,13 @@ void	init_image(t_cube *cube, t_image *tmp, char *path)
 	tmp->bits_per_pixel = 0;
 	tmp->line_length = 0;
 	tmp->endian = 0;
-	tmp->img = mlx_xpm_file_to_image(cube->mlx, path, TEXTURE_SIZE, TEXTURE_SIZE);
+
+	tmp->img = mlx_xpm_file_to_image(cube->mlx, path, &cube->texture->size, &cube->texture->size);
 	if (!tmp->img)
+	{
+		printf("here\n");
 		exit(1);
+	}
 	tmp->addr = mlx_get_data_addr(tmp->img, &tmp->bits_per_pixel,
 			&tmp->line_length, &tmp->endian);
 	if (!tmp->addr)
@@ -59,10 +63,21 @@ int *xpm_to_image(t_cube *cube, char *path)
 
 	init_image(cube, &tmp, path);
 	buffer = ft_calloc(1, sizeof(int) * TEXTURE_SIZE * TEXTURE_SIZE);
+	if (!buffer)
+		exit(1);
 	y = 0;
-	
-	printf("%s\n", path);
-	return (NULL);
+	while (y < TEXTURE_SIZE)
+	{
+		x = 0;
+		while (x < TEXTURE_SIZE)
+		{
+			buffer[y * TEXTURE_SIZE + x] = tmp.addr[y * TEXTURE_SIZE + x];
+			x++;
+		}
+		y++;
+	}
+	mlx_destroy_image(cube->mlx, tmp.img);
+	return (buffer);
 }
 
 void	load_textures(t_cube *cube)
@@ -84,6 +99,7 @@ void	graphic(t_cube *cube)
 	cube->win = mlx_new_window(cube->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	init_game(cube);
 	load_textures(cube);
+	printf("hre\n");
 	find_player_position(cube);
 	init_player_position(cube);
 	raycasting(cube);
