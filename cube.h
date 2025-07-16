@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/15 16:21:16 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/16 15:55:41 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@
 
 #define WIN_WIDTH 720
 #define WIN_HEIGHT 400
+#define VERTICAL 0
+#define HORIZONTAL 1
+#define NORTH 0
+#define SOUTH 1
+#define EAST 2
+#define WEST 3
+#define TEXTURE_SIZE 64
 
 typedef struct	s_data
 {
@@ -35,14 +42,16 @@ typedef struct	s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		width;
+	int		height;
 }				t_data;
 
 typedef enum s_enum
 {
 	NO = 1,
 	SO,
-	WE,
 	EA,
+	WE,
 	F,
 	C,
 }		t_enum;
@@ -84,12 +93,15 @@ typedef struct s_ray
 	double	side_dist_y;
 	int		step_x;
 	int		step_y;
-	int	hit;
-	int	side;
+	int		hit;
+	int		side;
 	double	perp_wall_dist;
 	double	line_height;
-
-}t_ray;
+	double	draw_start;
+	double	draw_end;
+	double	wall_x;
+	double	tex_x;
+}			t_ray;
 
 typedef struct s_player
 {
@@ -101,6 +113,20 @@ typedef struct s_player
 	double	plane_x;
 	double	plane_y;
 }	t_player;
+
+typedef struct s_texture
+{
+
+	char			*north;
+	char			*south;
+	char			*west;
+	char			*east;
+	int				*floor;
+	int				*ceiling;
+	unsigned long	hex_floor;
+	unsigned long	hex_ceiling;
+	int				size;
+}					t_texture;
 
 typedef struct s_cube
 {
@@ -118,7 +144,8 @@ typedef struct s_cube
 	t_data		*img;
 	void		*mlx;
 	void		*win;
-
+	t_texture	*texture;
+	int			**texture_img;
 }			t_cube;
 
 

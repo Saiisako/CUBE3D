@@ -20,13 +20,13 @@ void	dda_algo(t_cube *cube)
 		{
 			cube->ray->side_dist_x += cube->ray->delta_dist_x;
 			cube->ray->map_x += cube->ray->step_x;
-			cube->ray->side = 0; // vertical: on a franchi une ligne verticale donc cest ce cote du mur qui a ete touche
+			cube->ray->side = VERTICAL;
 		}
 		else
 		{
 			cube->ray->side_dist_y += cube->ray->delta_dist_y;
 			cube->ray->map_y += cube->ray->step_y;
-			cube->ray->side = 1; // horizontal: on a franchi une ligne horizontale donc cest ce cote du mur qui a ete touche
+			cube->ray->side = HORIZONTAL;
 		}
 		if (cube->map_cpy->grid[cube->ray->map_y][cube->ray->map_x] == '1')
 			cube->ray->hit = 1;
@@ -85,8 +85,18 @@ void	calculate_line(t_cube *cube)
 				- cube->player->player_y + (1 - cube->ray->step_y) / 2)
 			/ cube->ray->ray_dir_y;
 	cube->ray->line_height = (int)(WIN_HEIGHT / cube->ray->perp_wall_dist);
+	cube->ray->draw_start = (WIN_HEIGHT / 2) - (cube->ray->line_height / 2);
+	if (cube->ray->draw_start < 0)
+		cube->ray->draw_start = 0;
+	cube->ray->draw_end = (cube->ray->line_height / 2) + (WIN_HEIGHT / 2);
+	if (cube->ray->draw_end > WIN_HEIGHT)
+		cube->ray->draw_end = WIN_HEIGHT - 1;
+	if (cube->ray->side == VERTICAL)
+			cube->ray->wall_x = cube->player->player_y + cube->ray->perp_wall_dist * cube->ray->ray_dir_y;
+	else if (cube->ray->side == HORIZONTAL)
+			cube->ray->wall_x = cube->player->player_x + cube->ray->perp_wall_dist * cube->ray->ray_dir_x;
+	cube->ray->wall_x -= floor(cube->ray->wall_x);
 }
-
 
 int	raycasting(t_cube *cube)
 {
@@ -100,16 +110,9 @@ int	raycasting(t_cube *cube)
 		init_ray_steps(cube);
 		dda_algo(cube); // si pb revoir pourquoi 0.25
 		calculate_line(cube);
-
-		int y = WIN_HEIGHT - cube->ray->line_height - 1;
-		while (y < WIN_HEIGHT)
-		{
-			mlx_pixel_put(cube->mlx, cube->win, x, y, (0xffffff >> 1) & 8355711);
-			y++;
-		}
-
 		//dessiner la colonne
 		x++;
 	}
+	exit(1);
 	return (0);
 }

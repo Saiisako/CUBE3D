@@ -40,6 +40,11 @@ static void	init_ray(t_cube *cube)
 	cube->ray->side = 0;
 	cube->ray->perp_wall_dist = 0;
 	cube->ray->line_height = 0;
+	cube->ray->draw_start = 0;
+	cube->ray->draw_end = 0;
+	cube->ray->wall_x = 0;
+	cube->ray->tex_x = 0;
+
 }
 
 void	init_game(t_cube *cube)
