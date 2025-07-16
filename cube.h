@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/16 15:55:41 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/16 16:21:44 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,6 @@
 #define WEST 3
 #define TEXTURE_SIZE 64
 
-typedef struct	s_data
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		width;
-	int		height;
-}				t_data;
 
 typedef enum s_enum
 {
@@ -55,6 +45,15 @@ typedef enum s_enum
 	F,
 	C,
 }		t_enum;
+
+typedef struct	s_image
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_image;
 
 typedef struct s_color
 {
@@ -141,7 +140,7 @@ typedef struct s_cube
 	t_player	*player;
 	t_ray		*ray;
 	char		**path;
-	t_data		*img;
+	t_image		*img;
 	void		*mlx;
 	void		*win;
 	t_texture	*texture;
