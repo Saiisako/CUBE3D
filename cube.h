@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/16 18:11:35 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/17 17:50:11 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct	s_image
 {
 	void	*img;
 	char	*addr;
+	int		*color;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -99,7 +100,9 @@ typedef struct s_ray
 	double	draw_start;
 	double	draw_end;
 	double	wall_x;
-	double	tex_x;
+	int		tex_x;
+	int		tex_y;
+	int		wall_dir;
 }			t_ray;
 
 typedef struct s_player
@@ -115,7 +118,6 @@ typedef struct s_player
 
 typedef struct s_texture
 {
-
 	char			*north;
 	char			*south;
 	char			*west;
@@ -125,6 +127,11 @@ typedef struct s_texture
 	unsigned long	hex_floor;
 	unsigned long	hex_ceiling;
 	int				size;
+	int				index;
+	double			step;
+	double			pos;
+	int				x;
+	int				y;
 }					t_texture;
 
 typedef struct s_cube
@@ -188,6 +195,7 @@ void	ft_error_parsing_empty_map(t_cube *cube, const char *str);
 void	graphic(t_cube *cube);
 void	init_game(t_cube *cube);
 int		raycasting(t_cube *cube);
+void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color);
 
 // INIT PLAYER
 void	find_player_position(t_cube *cube);

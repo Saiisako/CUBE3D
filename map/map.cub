@@ -1,17 +1,17 @@
 
 F	0,0,0
 C	225,30,255
-NO	./path_to_the_north_texture
-EA	./path_to_the_east_texture
-SO	./path_to_the_south_texture
-WE	./path_to_the_west_texture
+NO	assets/north.xpm
+EA	assets/east.xpm
+SO	assets/south.xpm
+WE	assets/west.xpm
 
 
 
 111111111111111
 100000000000001
-100000010000001
+100000100100001
 100000000000001
-1000000N0000001
+1000000W0000001
 100000000000001
 111111111111111

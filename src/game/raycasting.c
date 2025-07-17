@@ -74,6 +74,46 @@ void	init_ray_data(t_cube *cube, int x)
 	cube->ray->delta_dist_y = fabs(1 / cube->ray->ray_dir_y);
 }
 
+void	set_wall_direction(t_cube *cube)
+{
+	if (cube->ray->side == VERTICAL)
+	{
+		if (cube->ray->ray_dir_x > 0)
+			cube->texture->index = EAST;
+		else
+			cube->texture->index = WEST;
+	}
+	else
+	{
+		if (cube->ray->ray_dir_y < 0)
+			cube->texture->index = NORTH;
+		else
+			cube->texture->index = SOUTH;
+	}
+}
+
+void	update_texture(t_cube *cube, int x)
+{
+	int	y;
+	int color;
+
+	set_wall_direction(cube);
+	cube->ray->tex_x = (int)(cube->ray->wall_x * TEXTURE_SIZE);
+	cube->texture->step = 1.0 * TEXTURE_SIZE / cube->ray->line_height;
+	cube->texture->pos = (cube->ray->draw_start - WIN_HEIGHT / 2 + cube->ray->line_height / 2) * cube->texture->step;
+	y = cube->ray->draw_start;
+	while (y < cube->ray->draw_end)
+	{
+		cube->ray->tex_y = (int)cube->texture->pos & (TEXTURE_SIZE - 1);
+		cube->texture->pos += cube->texture->step;
+		color = cube->texture_img[cube->texture->index][cube->ray->tex_y * cube->texture->size + cube->ray->tex_x];
+		if (color > 0)
+			color = cube->texture_img[cube->texture->index][cube->ray->tex_y * TEXTURE_SIZE + cube->ray->tex_x];
+		my_mlx_pixel_put(cube, x, y, color);
+		y++;
+	}
+}
+
 void	calculate_line(t_cube *cube)
 {
 	if (cube->ray->side == 0)
@@ -96,7 +136,6 @@ void	calculate_line(t_cube *cube)
 	else if (cube->ray->side == HORIZONTAL)
 			cube->ray->wall_x = cube->player->player_x + cube->ray->perp_wall_dist * cube->ray->ray_dir_x;
 	cube->ray->wall_x -= floor(cube->ray->wall_x);
-	cube->ray->tex_x = cube->ray->wall_x * TEXTURE_SIZE;
 }
 
 int	raycasting(t_cube *cube)
@@ -109,11 +148,10 @@ int	raycasting(t_cube *cube)
 		cube->ray->hit = 0;
 		init_ray_data(cube, x);
 		init_ray_steps(cube);
-		dda_algo(cube); // si pb revoir pourquoi 0.25
+		dda_algo(cube);
 		calculate_line(cube);
-		//dessiner la colonne
+		update_texture(cube, x);
 		x++;
 	}
-	exit(1);
 	return (0);
 }

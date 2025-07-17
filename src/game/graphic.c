@@ -3,18 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   graphic.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:19:39 by skock             #+#    #+#             */
-/*   Updated: 2025/07/16 19:26:57 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/17 18:04:48 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cube.h"
 
+void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color)
+{
+	char	*dst;
+
+	if (x < 0 || x >= WIN_WIDTH || y < 0 || y >= WIN_HEIGHT)
+		return;
+	dst = cube->img->addr + (y * cube->img->line_length + x * (cube->img->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
+
 int	render(t_cube *cube)
 {
 	raycasting(cube);
+	mlx_put_image_to_window(cube->mlx, cube->win, cube->img->img, 0, 0);
 	return (0);
 }
 
@@ -32,12 +43,18 @@ void	init_tex(t_cube *cube)
 	cube->texture->hex_floor = 0x0;
 	cube->texture->hex_ceiling = 0x0;
 	cube->texture->size = TEXTURE_SIZE;
+	cube->texture->index = 0;
+	cube->texture->step = 0.0;
+	cube->texture->pos = 0.0;
+	cube->texture->x = 0;
+	cube->texture->y = 0;
 }
 
 void	init_image(t_cube *cube, t_image *tmp, char *path)
 {
 	tmp->img = NULL;
 	tmp->addr = NULL;
+	tmp->color = NULL;
 	tmp->bits_per_pixel = 0;
 	tmp->line_length = 0;
 	tmp->endian = 0;
@@ -47,6 +64,7 @@ void	init_image(t_cube *cube, t_image *tmp, char *path)
 		exit(1);
 	tmp->addr = mlx_get_data_addr(tmp->img, &tmp->bits_per_pixel,
 			&tmp->line_length, &tmp->endian);
+	tmp->color = (int*)tmp->addr;
 	if (!tmp->addr)
 		exit(1);
 }
@@ -88,6 +106,18 @@ void	load_textures(t_cube *cube)
 	cube->texture_img[EAST] = xpm_to_image(cube, cube->path[EAST]);
 	cube->texture_img[WEST] = xpm_to_image(cube, cube->path[WEST]);
 }
+void	init_main_image(t_cube *cube)
+{
+	cube->img->img = mlx_new_image(cube->mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (!cube->img->img)
+		exit(1);
+	cube->img->addr = mlx_get_data_addr(cube->img->img,
+			&cube->img->bits_per_pixel,
+			&cube->img->line_length,
+			&cube->img->endian);
+	if (!cube->img->addr)
+		exit(1);
+}
 
 
 void	graphic(t_cube *cube)
@@ -96,6 +126,7 @@ void	graphic(t_cube *cube)
 	cube->win = mlx_new_window(cube->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	init_game(cube);
 	load_textures(cube);
+	init_main_image(cube);
 	find_player_position(cube);
 	init_player_position(cube);
 	raycasting(cube);

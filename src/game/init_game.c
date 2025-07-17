@@ -44,7 +44,7 @@ static void	init_ray(t_cube *cube)
 	cube->ray->draw_end = 0;
 	cube->ray->wall_x = 0;
 	cube->ray->tex_x = 0;
-
+	cube->ray->tex_y = 0;
 }
 
 void	init_game(t_cube *cube)
