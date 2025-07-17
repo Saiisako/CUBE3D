@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:19:39 by skock             #+#    #+#             */
-/*   Updated: 2025/07/17 18:04:48 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/17 19:34:46 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,13 @@ void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color)
 
 int	render(t_cube *cube)
 {
+	mlx_destroy_image(cube->mlx, cube->img->img);
+	cube->img->img = mlx_new_image(cube->mlx, WIN_WIDTH, WIN_HEIGHT);
+	cube->img->addr = mlx_get_data_addr(cube->img->img, &cube->img->bits_per_pixel, &cube->img->line_length, &cube->img->endian);
 	raycasting(cube);
 	mlx_put_image_to_window(cube->mlx, cube->win, cube->img->img, 0, 0);
-	return (0);
+	// mlx_clear_window(cube->mlx, cube->win);
+	return (1);
 }
 
 void	init_tex(t_cube *cube)
@@ -86,7 +90,8 @@ int *xpm_to_image(t_cube *cube, char *path)
 		x = 0;
 		while (x < TEXTURE_SIZE)
 		{
-			buffer[y * TEXTURE_SIZE + x] = tmp.addr[y * TEXTURE_SIZE + x];
+			int src_pos = y * (tmp.line_length / sizeof(int)) + x;
+			buffer[y * TEXTURE_SIZE + x] = tmp.color[src_pos];
 			x++;
 		}
 		y++;
@@ -119,7 +124,31 @@ void	init_main_image(t_cube *cube)
 		exit(1);
 }
 
-
+int	move(int keycode, void *c)
+{
+	t_cube *cube = (t_cube *)c;
+	if (keycode == W)
+	{
+		cube->player->player_y -= 0.2;
+		return 1;
+	}
+	if (keycode == D)
+	{
+		cube->player->player_x += 0.2;
+		return 1;
+	}
+	if (keycode == S)
+	{
+		cube->player->player_y += 0.2;
+		return 1;
+	}
+	if (keycode == A)
+	{
+		cube->player->player_x -= 0.2;
+		return 1;
+	}
+	return (1);
+}
 void	graphic(t_cube *cube)
 {
 	cube->mlx = mlx_init();
@@ -130,6 +159,7 @@ void	graphic(t_cube *cube)
 	find_player_position(cube);
 	init_player_position(cube);
 	raycasting(cube);
+	mlx_key_hook(cube->win, move, cube);
 	mlx_loop_hook(cube->mlx, render, cube);
 	mlx_loop(cube->mlx);
 	return ;

@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/17 17:50:11 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/17 19:26:54 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@
 #define EAST 2
 #define WEST 3
 #define TEXTURE_SIZE 64
+#define W 119
+#define D 100
+#define S 115
+#define A 97
 
 
 typedef enum s_enum
