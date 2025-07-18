@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/18 14:03:49 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/18 17:10:48 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,24 @@
 # include <stdbool.h>
 # include <math.h>
 
-#define WIN_WIDTH 720
-#define WIN_HEIGHT 400
-#define VERTICAL 0
-#define HORIZONTAL 1
-#define NORTH 0
-#define SOUTH 1
-#define EAST 2
-#define WEST 3
-#define TEXTURE_SIZE 64
-#define ESCAPE 65307
-#define W 119
-#define A 97
-#define S 115
-#define D 100
-#define ROTATE_L 65361
-#define ROTATE_R 65363
-#define ROTATION_SPEED 0.05
-#define MOVE_SPEED 0.1
-
+# define WIN_WIDTH 720
+# define WIN_HEIGHT 400
+# define VERTICAL 0
+# define HORIZONTAL 1
+# define NORTH 0
+# define SOUTH 1
+# define EAST 2
+# define WEST 3
+# define TEXTURE_SIZE 64
+# define ESCAPE 65307
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define ROTATE_L 65361
+# define ROTATE_R 65363
+# define ROTATION_SPEED 0.05
+# define MOVE_SPEED 0.4
 
 typedef enum s_enum
 {
@@ -55,7 +54,7 @@ typedef enum s_enum
 	C,
 }		t_enum;
 
-typedef struct	s_image
+typedef struct s_image
 {
 	void	*img;
 	char	*addr;
@@ -146,14 +145,14 @@ typedef struct s_texture
 
 typedef struct s_cube
 {
-	char	**av;
-	char	*file_path;
-	t_id	*id;
-	t_map	*map;
-	t_map	*map_cpy;
-	t_color	*color_f;
-	t_color	*color_c;
-	int		count;
+	char		**av;
+	char		*file_path;
+	t_id		*id;
+	t_map		*map;
+	t_map		*map_cpy;
+	t_color		*color_f;
+	t_color		*color_c;
+	int			count;
 	t_player	*player;
 	t_ray		*ray;
 	char		**path;
@@ -164,7 +163,6 @@ typedef struct s_cube
 	int			**texture_img;
 	int			**tex_color;
 }			t_cube;
-
 
 ///////////////// FUNCTIONS /////////////////
 
@@ -213,5 +211,27 @@ void	find_player_position(t_cube *cube);
 void	init_player_position(t_cube *cube);
 
 void	free_tab(int **array);
+
+void	rotate_left_vector_dir(t_cube *cube);
+void	rotate_left_vector_plane(t_cube *cube);
+void	rotate_right_vector_dir(t_cube *cube);
+void	rotate_right_vector_plane(t_cube *cube);
+void	rotate(t_cube *cube, int keycode);
+
+void	move_forward(t_cube *cube);
+void	move_backward(t_cube *cube);
+void	move_left(t_cube *cube);
+void	move_right(t_cube *cube);
+void	walk(t_cube *cube, int keycode);
+
+void	quit_game(t_cube *cube, int keycode);
+int		move(int keycode, void *c);
+void	init_main_image(t_cube *cube);
+void	init_tex(t_cube *cube);
+void	init_image(t_cube *cube, t_image *tmp, char *path);
+void	init_player(t_cube *cube);
+void	set_wall_direction(t_cube *cube);
+void	update_texture(t_cube *cube, int x);
+void	render_floor_ceiling(t_cube *cube);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 11:47:16 by skock             #+#    #+#             */
-/*   Updated: 2025/07/07 12:47:48 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/18 16:33:22 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,4 @@ void	check_x(t_cube *cube)
 		}
 		i++;
 	}
-	// ft_error_parsing_map(cube, "map is correct\n");
 }

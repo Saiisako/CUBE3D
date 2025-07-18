@@ -12,7 +12,16 @@
 
 #include "../../cube.h"
 
-// initialiser le joueur en fonction de la direction N S E W
+void	init_player(t_cube *cube)
+{
+	cube->player->dir = 0;
+	cube->player->player_x = 0;
+	cube->player->player_y = 0;
+	cube->player->dir_x = 0;
+	cube->player->dir_y = 0;
+	cube->player->plane_x = 0;
+	cube->player->plane_y = 0;
+}
 
 void	find_player_position(t_cube *cube)
 {

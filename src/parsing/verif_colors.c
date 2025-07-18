@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:59:08 by skock             #+#    #+#             */
-/*   Updated: 2025/07/18 12:53:46 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/18 16:34:54 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ static void	fill_rgb_struct(t_cube *cube, char *format, char **rgb, int id)
 		cube->color_f->r_color = ft_atoi_rgb(rgb[0]);
 		cube->color_f->g_color = ft_atoi_rgb(rgb[1]);
 		cube->color_f->b_color = ft_atoi_rgb(rgb[2]);
-		cube->color_f->color = (cube->color_f->r_color << 16) + (cube->color_f->g_color << 8) + (cube->color_f->b_color);
+		cube->color_f->color = (cube->color_f->r_color << 16)
+			| (cube->color_f->g_color << 8) | (cube->color_f->b_color);
 		verif_rgb(cube, format, rgb);
 	}
 	else if (id == C)
