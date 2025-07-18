@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:19:39 by skock             #+#    #+#             */
-/*   Updated: 2025/07/18 12:44:11 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:03:32 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int *xpm_to_image(t_cube *cube, char *path)
 	int *buffer;
 	int x;
 	int y;
-	int src_pos;
 
 	init_image(cube, &tmp, path);
 	buffer = ft_calloc(TEXTURE_SIZE * TEXTURE_SIZE, sizeof(int));
@@ -90,8 +89,7 @@ int *xpm_to_image(t_cube *cube, char *path)
 		x = 0;
 		while (x < TEXTURE_SIZE)
 		{
-			src_pos = y * (tmp.line_length / sizeof(int)) + x;
-			buffer[y * TEXTURE_SIZE + x] = tmp.color[src_pos];
+			buffer[y * TEXTURE_SIZE + x] = tmp.color[y * TEXTURE_SIZE + x];
 			x++;
 		}
 		y++;
@@ -128,33 +126,58 @@ void	walk(t_cube *cube, int keycode)
 {
 	if (keycode == W)
 	{
-		cube->player->player_y -= MOVE_SPEED;
-	}
-	else if (keycode == A)
-	{
-		cube->player->player_x -= MOVE_SPEED;
-
+		if (cube->player->player_y - MOVE_SPEED < 1)
+			return ;
+		cube->player->player_x = cube->player->player_x + cube->player->dir_x * MOVE_SPEED;
+		cube->player->player_y = cube->player->player_y + cube->player->dir_y * MOVE_SPEED;
 	}
 	else if (keycode == S)
 	{
-		cube->player->player_y += MOVE_SPEED;
-
+		if (cube->player->player_y + MOVE_SPEED > cube->map_cpy->grid_height - 1)
+			return ;
+		cube->player->player_x = cube->player->player_x - cube->player->dir_x * MOVE_SPEED;
+		cube->player->player_y = cube->player->player_y - cube->player->dir_y * MOVE_SPEED;
+	}
+	else if (keycode == A)
+	{
+		if (cube->player->player_x - MOVE_SPEED < 1)
+			return ;
+		cube->player->player_x = cube->player->player_x - cube->player->plane_x * MOVE_SPEED;
+		cube->player->player_y = cube->player->player_y - cube->player->plane_y * MOVE_SPEED;
 	}
 	else if (keycode == D)
 	{
-		cube->player->player_x += MOVE_SPEED;
+		if (cube->player->player_x + MOVE_SPEED > cube->map_cpy->grid_length - 1)
+			return ;
+		cube->player->player_x = cube->player->player_x + cube->player->plane_x * MOVE_SPEED;
+		cube->player->player_y = cube->player->player_y + cube->player->plane_y * MOVE_SPEED;
 	}
 }
 
+
 void	rotate(t_cube *cube, int keycode)
 {
-	(void)(cube);
-	if (keycode == ROTATE_R)
+	double old_dir_x;
+	double old_plane_x;
+
+	if (keycode == ROTATE_L)
 	{
+		old_dir_x = cube->player->dir_x;
+		cube->player->dir_x = cube->player->dir_x * cos(-ROTATION_SPEED) - cube->player->dir_y * sin(-ROTATION_SPEED);
+		cube->player->dir_y = old_dir_x * sin(-ROTATION_SPEED) + cube->player->dir_y * cos(-ROTATION_SPEED);
+		old_plane_x = cube->player->plane_x;
+		cube->player->plane_x = cube->player->plane_x * cos(-ROTATION_SPEED) - cube->player->plane_y * sin(-ROTATION_SPEED);
+		cube->player->plane_y = old_plane_x * sin(-ROTATION_SPEED) + cube->player->plane_y * cos(-ROTATION_SPEED);
 		return ;
 	}
-	else if (keycode == ROTATE_L)
+	else if (keycode == ROTATE_R)
 	{
+		old_dir_x = cube->player->dir_x;
+		cube->player->dir_x = cube->player->dir_x * cos(ROTATION_SPEED) - cube->player->dir_y * sin(ROTATION_SPEED);
+		cube->player->dir_y = old_dir_x * sin(ROTATION_SPEED) + cube->player->dir_y * cos(ROTATION_SPEED);
+		old_plane_x = cube->player->plane_x;
+		cube->player->plane_x = cube->player->plane_x * cos(ROTATION_SPEED) - cube->player->plane_y * sin(ROTATION_SPEED);
+		cube->player->plane_y = old_plane_x * sin(ROTATION_SPEED) + cube->player->plane_y * cos(ROTATION_SPEED);
 		return ;
 	}
 }

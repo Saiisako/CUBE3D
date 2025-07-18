@@ -1,10 +1,10 @@
 
-F	125,14,255
-C	225,30,254
+C	110,110,110
+F	70,70,70
 NO	assets/north.xpm
 EA	assets/east.xpm
 SO	assets/south.xpm
-WE	assets/west.xpm
+WE	assets/south.xpm
 
 
 
