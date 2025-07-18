@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:12:21 by skock             #+#    #+#             */
-/*   Updated: 2025/07/16 19:24:36 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/18 12:46:07 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 static void	init_colors(t_cube *cube)
 {
+	cube->color_f->color = 0;
 	cube->color_f->r_color = 0;
 	cube->color_f->g_color = 0;
 	cube->color_f->b_color = 0;
+	cube->color_c->color = 0;
 	cube->color_c->r_color = 0;
 	cube->color_c->g_color = 0;
 	cube->color_c->b_color = 0;

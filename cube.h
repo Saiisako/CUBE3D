@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/17 19:26:54 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/18 12:27:46 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,14 @@
 #define EAST 2
 #define WEST 3
 #define TEXTURE_SIZE 64
+#define ESCAPE 65307
 #define W 119
-#define D 100
-#define S 115
 #define A 97
+#define S 115
+#define D 100
+#define ROTATE_L 65361
+#define ROTATE_R 65363
+#define MOVE_SPEED 0.1
 
 
 typedef enum s_enum
@@ -65,6 +69,7 @@ typedef struct s_color
 	int	r_color;
 	int	g_color;
 	int	b_color;
+	int	color;
 }	t_color;
 
 typedef struct s_id
@@ -156,6 +161,7 @@ typedef struct s_cube
 	void		*win;
 	t_texture	*texture;
 	int			**texture_img;
+	int			**tex_color;
 }			t_cube;
 
 
@@ -204,4 +210,7 @@ void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color);
 // INIT PLAYER
 void	find_player_position(t_cube *cube);
 void	init_player_position(t_cube *cube);
+
+void	free_tab(int **array);
+
 #endif

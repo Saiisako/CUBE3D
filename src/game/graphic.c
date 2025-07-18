@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:19:39 by skock             #+#    #+#             */
-/*   Updated: 2025/07/17 19:34:46 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/18 12:44:11 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	render(t_cube *cube)
 	cube->img->addr = mlx_get_data_addr(cube->img->img, &cube->img->bits_per_pixel, &cube->img->line_length, &cube->img->endian);
 	raycasting(cube);
 	mlx_put_image_to_window(cube->mlx, cube->win, cube->img->img, 0, 0);
-	// mlx_clear_window(cube->mlx, cube->win);
 	return (1);
 }
 
@@ -79,6 +78,7 @@ int *xpm_to_image(t_cube *cube, char *path)
 	int *buffer;
 	int x;
 	int y;
+	int src_pos;
 
 	init_image(cube, &tmp, path);
 	buffer = ft_calloc(TEXTURE_SIZE * TEXTURE_SIZE, sizeof(int));
@@ -90,7 +90,7 @@ int *xpm_to_image(t_cube *cube, char *path)
 		x = 0;
 		while (x < TEXTURE_SIZE)
 		{
-			int src_pos = y * (tmp.line_length / sizeof(int)) + x;
+			src_pos = y * (tmp.line_length / sizeof(int)) + x;
 			buffer[y * TEXTURE_SIZE + x] = tmp.color[src_pos];
 			x++;
 		}
@@ -124,31 +124,58 @@ void	init_main_image(t_cube *cube)
 		exit(1);
 }
 
-int	move(int keycode, void *c)
+void	walk(t_cube *cube, int keycode)
 {
-	t_cube *cube = (t_cube *)c;
 	if (keycode == W)
 	{
-		cube->player->player_y -= 0.2;
-		return 1;
+		cube->player->player_y -= MOVE_SPEED;
 	}
-	if (keycode == D)
+	else if (keycode == A)
 	{
-		cube->player->player_x += 0.2;
-		return 1;
+		cube->player->player_x -= MOVE_SPEED;
+
 	}
-	if (keycode == S)
+	else if (keycode == S)
 	{
-		cube->player->player_y += 0.2;
-		return 1;
+		cube->player->player_y += MOVE_SPEED;
+
 	}
-	if (keycode == A)
+	else if (keycode == D)
 	{
-		cube->player->player_x -= 0.2;
-		return 1;
+		cube->player->player_x += MOVE_SPEED;
 	}
+}
+
+void	rotate(t_cube *cube, int keycode)
+{
+	(void)(cube);
+	if (keycode == ROTATE_R)
+	{
+		return ;
+	}
+	else if (keycode == ROTATE_L)
+	{
+		return ;
+	}
+}
+
+void	quit_game(t_cube *cube, int keycode)
+{
+	(void)cube;
+	if (keycode == ESCAPE)
+		exit(1);
+}
+
+int	move(int keycode, void *c)
+{
+	t_cube *cube = (t_cube*)c;
+
+	quit_game(cube, keycode);
+	walk(cube, keycode);
+	rotate(cube, keycode);
 	return (1);
 }
+
 void	graphic(t_cube *cube)
 {
 	cube->mlx = mlx_init();
