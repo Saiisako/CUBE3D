@@ -90,6 +90,17 @@ static void	init_ray(t_cube *cube)
 	cube->ray->tex_y = 0;
 }
 
+void	init_input(t_cube *cube)
+{
+	cube->move_up = 0;
+	cube->move_down = 0;
+	cube->move_right = 0;
+	cube->move_left = 0;
+	cube->rotate_right = 0;
+	cube->rotate_left = 0;
+	cube->quit = 0;
+}
+
 void	init_game(t_cube *cube)
 {
 	cube->player = malloc(sizeof(t_player));
@@ -103,4 +114,5 @@ void	init_game(t_cube *cube)
 		exit(1);
 	init_player(cube);
 	init_ray(cube);
+	init_input(cube);
 }

@@ -49,3 +49,28 @@ donc si on veut raydiry ca sera : raydiry = dir_y + (plane_y * cameraX)
 - Ctrl + Shift + flèches directionnelle(➡️, ⬅️) = Selectionner mot par mot.
 - Ctrl + Shift + P = Utiliser Snippet pour améliorer l'insertion d'un groupe de mot plus rapidement.
 - F1 + extension insert numbers, permet d'iterer des chiffres sur les lignes selectionnées.
+
+
+
+
+
+
+
+
+bonus collision : a mettre dans <move>
+{
+if (cube->map_cpy->grid[(int)new_y][(int)new_x] == '1') // ADDED
+	return ;
+}
+
+bonus mouse : a mettre dans <render>
+{
+	int x;
+	int y;
+	mlx_mouse_get_pos(cube->mlx, cube->win, &x, &y);
+	if (x < WIN_WIDTH / 3)
+		rotate(cube, ROTATE_L);
+	else if (x > 2 * WIN_WIDTH / 3)
+		rotate(cube, ROTATE_R);
+}
+

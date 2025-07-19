@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:19:39 by skock             #+#    #+#             */
-/*   Updated: 2025/07/19 08:24:49 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/19 12:05:16 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,6 @@ int on_key_release(int keycode, t_cube *cube)
 
 int	render(t_cube *cube)
 {
-	int x;
-	int y;
-	mlx_mouse_get_pos(cube->mlx, cube->win, &x, &y);
-	if (x < WIN_WIDTH / 3)
-		rotate(cube, ROTATE_L);
-	else if (x > 2 * WIN_WIDTH / 3)
-		rotate(cube, ROTATE_R);
 	input(cube);
 	mlx_destroy_image(cube->mlx, cube->img->img);
 	cube->img->img = mlx_new_image(cube->mlx, WIN_WIDTH, WIN_HEIGHT);
@@ -123,20 +116,13 @@ void	graphic(t_cube *cube)
 {
 	cube->mlx = mlx_init();
 	cube->win = mlx_new_window(cube->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
-	cube->move_up = 0;
-	cube->move_down = 0;
-	cube->move_right = 0;
-	cube->move_left = 0;
-	cube->rotate_right = 0;
-	cube->rotate_left = 0;
-	cube->quit = 0;
 	init_game(cube);
 	load_textures(cube);
 	init_main_image(cube);
 	find_player_position(cube);
 	init_player_position(cube);
 	raycasting(cube);
-	mlx_hook(cube->win, 2, 1L << 0, on_key_press, cube);    // KeyPress
+	mlx_hook(cube->win, 2, 1L << 0, on_key_press, cube);
 	mlx_hook(cube->win, 3, 1L << 1, on_key_release, cube);
 	mlx_loop_hook(cube->mlx, render, cube);
 	mlx_loop(cube->mlx);

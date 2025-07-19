@@ -39,7 +39,7 @@ void	update_texture(t_cube *cube, int x)
 	cube->ray->tex_x = (int)(cube->ray->wall_x * TEXTURE_SIZE);
 	cube->texture->step = 1 * TEXTURE_SIZE / cube->ray->line_height;
 	cube->texture->pos = (cube->ray->draw_start - WIN_HEIGHT
-		/ 2 + cube->ray->line_height / 2) * cube->texture->step;
+			/ 2 + cube->ray->line_height / 2) * cube->texture->step;
 	if (cube->texture->index == WEST || cube->texture->index == SOUTH)
 		cube->ray->tex_x = TEXTURE_SIZE - cube->ray->tex_x - 1;
 	y = cube->ray->draw_start;
@@ -49,8 +49,6 @@ void	update_texture(t_cube *cube, int x)
 		cube->texture->pos += cube->texture->step;
 		color = cube->texture_img[cube->texture->index][cube->ray->tex_y
 			* cube->texture->size + cube->ray->tex_x];
-		// if (cube->ray->side == 1)
-		// 	color = (color >> 1) & 8355711;
 		my_mlx_pixel_put(cube, x, y, color);
 		y++;
 	}

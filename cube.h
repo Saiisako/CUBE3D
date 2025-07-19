@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/19 08:01:33 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/19 12:06:33 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define D 100
 # define ROTATE_L 65361
 # define ROTATE_R 65363
-# define ROTATION_SPEED 0.05
+# define ROTATION_SPEED 0.04
 # define MOVE_SPEED 0.04
 
 typedef enum s_enum
