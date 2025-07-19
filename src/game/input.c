@@ -12,20 +12,19 @@
 
 #include "../../cube.h"
 
-void	quit_game(t_cube *cube, int keycode)
+void	quit_game(t_cube *cube)
 {
-	(void)cube;
-	if (keycode == ESCAPE)
+	if (cube->quit)
 		exit(1);
 }
 
-int	move(int keycode, void *c)
+int	input(t_cube *cube)
 {
-	t_cube	*cube;
-
-	cube = (t_cube *)c;
-	quit_game(cube, keycode);
-	walk(cube, keycode);
-	rotate(cube, keycode);
+	quit_game(cube);
+	walk(cube);
+	if (cube->rotate_left)
+		rotate(cube, ROTATE_L);
+	if (cube->rotate_right)
+		rotate(cube, ROTATE_R);
 	return (1);
 }

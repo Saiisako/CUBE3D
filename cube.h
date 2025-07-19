@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/18 17:10:48 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/19 08:01:33 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <stdbool.h>
 # include <math.h>
 
-# define WIN_WIDTH 720
-# define WIN_HEIGHT 400
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
 # define VERTICAL 0
 # define HORIZONTAL 1
 # define NORTH 0
@@ -42,7 +42,7 @@
 # define ROTATE_L 65361
 # define ROTATE_R 65363
 # define ROTATION_SPEED 0.05
-# define MOVE_SPEED 0.4
+# define MOVE_SPEED 0.04
 
 typedef enum s_enum
 {
@@ -162,6 +162,13 @@ typedef struct s_cube
 	t_texture	*texture;
 	int			**texture_img;
 	int			**tex_color;
+	bool		move_up;
+	bool		move_down;
+	bool		move_left;
+	bool		move_right;
+	bool		rotate_left;
+	bool		rotate_right;
+	bool		quit;
 }			t_cube;
 
 ///////////////// FUNCTIONS /////////////////
@@ -222,10 +229,10 @@ void	move_forward(t_cube *cube);
 void	move_backward(t_cube *cube);
 void	move_left(t_cube *cube);
 void	move_right(t_cube *cube);
-void	walk(t_cube *cube, int keycode);
+void	walk(t_cube *cube);
 
-void	quit_game(t_cube *cube, int keycode);
-int		move(int keycode, void *c);
+void	quit_game(t_cube *cube);
+int		input(t_cube *cube);
 void	init_main_image(t_cube *cube);
 void	init_tex(t_cube *cube);
 void	init_image(t_cube *cube, t_image *tmp, char *path);

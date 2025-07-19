@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"cube.h": "c",
-		"cstdlib": "c"
+		"cstdlib": "c",
+		"random": "c"
 	}
 }

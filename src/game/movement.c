@@ -22,6 +22,8 @@ void	move_forward(t_cube *cube)
 	if (new_x < 1 || new_x > cube->map_cpy->grid_length - 1 || new_y < 1
 		|| new_y > cube->map_cpy->grid_height - 1)
 		return ;
+	if (cube->map_cpy->grid[(int)new_y][(int)new_x] == '1') // ADDED
+		return ;
 	cube->player->player_x = new_x;
 	cube->player->player_y = new_y;
 }
@@ -35,6 +37,8 @@ void	move_backward(t_cube *cube)
 	new_y = cube->player->player_y - cube->player->dir_y * MOVE_SPEED;
 	if (new_x < 1 || new_x > cube->map_cpy->grid_length - 1 || new_y < 1
 		|| new_y > cube->map_cpy->grid_height - 1)
+		return ;
+	if (cube->map_cpy->grid[(int)new_y][(int)new_x] == '1') // ADDED
 		return ;
 	cube->player->player_x = new_x;
 	cube->player->player_y = new_y;
@@ -50,6 +54,8 @@ void	move_left(t_cube *cube)
 	if (new_x < 1 || new_x > cube->map_cpy->grid_length - 1 || new_y < 1
 		|| new_y > cube->map_cpy->grid_height - 1)
 		return ;
+	if (cube->map_cpy->grid[(int)new_y][(int)new_x] == '1') // ADDED
+		return ;
 	cube->player->player_x = new_x;
 	cube->player->player_y = new_y;
 }
@@ -64,18 +70,20 @@ void	move_right(t_cube *cube)
 	if (new_x < 1 || new_x > cube->map_cpy->grid_length - 1 || new_y < 1
 		|| new_y > cube->map_cpy->grid_height - 1)
 		return ;
+	if (cube->map_cpy->grid[(int)new_y][(int)new_x] == '1') // ADDED
+		return ;
 	cube->player->player_x = new_x;
 	cube->player->player_y = new_y;
 }
 
-void	walk(t_cube *cube, int keycode)
+void	walk(t_cube *cube)
 {
-	if (keycode == W)
+	if (cube->move_up)
 		move_forward(cube);
-	else if (keycode == S)
+	if (cube->move_down)
 		move_backward(cube);
-	else if (keycode == A)
+	if (cube->move_left)
 		move_left(cube);
-	else if (keycode == D)
+	if (cube->move_right)
 		move_right(cube);
 }
