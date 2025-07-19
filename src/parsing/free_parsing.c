@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:09:28 by skock             #+#    #+#             */
-/*   Updated: 2025/07/18 12:27:24 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/19 12:28:20 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	free_array(char **array)
 	free(array);
 }
 
-void	free_all(t_cube *cube)
+int	free_all(t_cube *cube)
 {
 	if (cube->map_cpy->grid)
 		free_array(cube->map_cpy->grid);
@@ -60,5 +60,18 @@ void	free_all(t_cube *cube)
 		free(cube->ray);
 	if (cube->path)
 		free_array(cube->path);
+	if (cube->texture_img)
+		free_tab(cube->texture_img);
+	if (cube->texture)
+		free(cube->texture);
+	mlx_destroy_image(cube->mlx, cube->img->img);
+	if (cube->img)
+		free(cube->img);
+	mlx_destroy_window(cube->mlx, cube->win);
+	mlx_destroy_display(cube->mlx);
+	if (cube->mlx)
+		free(cube->mlx);
 	free(cube);
+	exit(1);
+	return (0);
 }

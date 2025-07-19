@@ -70,6 +70,7 @@ void	move_right(t_cube *cube)
 
 void	walk(t_cube *cube)
 {
+	printf("here\n");
 	if (cube->move_up)
 		move_forward(cube);
 	if (cube->move_down)

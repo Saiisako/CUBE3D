@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/19 12:06:33 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/19 12:26:27 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,6 @@ typedef struct s_cube
 	void		*win;
 	t_texture	*texture;
 	int			**texture_img;
-	int			**tex_color;
 	bool		move_up;
 	bool		move_down;
 	bool		move_left;
@@ -200,7 +199,7 @@ int		update_height(t_cube *cube, int start);
 int		get_longest_line(char **map, int i);
 
 // FREE + ERROR
-void	free_all(t_cube *cube);
+int		free_all(t_cube *cube);
 void	free_array(char **array);
 void	ft_error_fd(t_cube *cube);
 void	ft_error_parsing(t_cube *cube, const char *str);

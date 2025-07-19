@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:41:54 by skock             #+#    #+#             */
-/*   Updated: 2025/07/15 16:11:48 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/19 12:12:53 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	main(int ac, char **av)
 		init_struct(cube, av);
 		parsing(cube);
 		graphic(cube);
-		free_all(cube);
 	}
 	else
 		free(cube);

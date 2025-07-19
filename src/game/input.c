@@ -15,7 +15,7 @@
 void	quit_game(t_cube *cube)
 {
 	if (cube->quit)
-		exit(1);
+		free_all(cube);
 }
 
 int	input(t_cube *cube)

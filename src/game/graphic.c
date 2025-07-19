@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:19:39 by skock             #+#    #+#             */
-/*   Updated: 2025/07/19 12:05:16 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/19 12:40:14 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ void	graphic(t_cube *cube)
 	raycasting(cube);
 	mlx_hook(cube->win, 2, 1L << 0, on_key_press, cube);
 	mlx_hook(cube->win, 3, 1L << 1, on_key_release, cube);
+	mlx_hook(cube->win, 17, 0, free_all, cube);
 	mlx_loop_hook(cube->mlx, render, cube);
 	mlx_loop(cube->mlx);
 	return ;
