@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:19:39 by skock             #+#    #+#             */
-/*   Updated: 2025/07/19 13:04:35 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/19 16:21:12 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color)
 
 int	render(t_cube *cube)
 {
+	int x;
+	int y;
+	mlx_mouse_get_pos(cube->mlx, cube->win, &x, &y);
+	if (x < WIN_WIDTH / 3)
+		rotate(cube, ROTATE_L);
+	else if (x > 2 * WIN_WIDTH / 3)
+		rotate(cube, ROTATE_R);
 	input(cube);
 	mlx_destroy_image(cube->mlx, cube->img->img);
 	cube->img->img = mlx_new_image(cube->mlx, WIN_WIDTH, WIN_HEIGHT);

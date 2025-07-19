@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:37:34 by skock             #+#    #+#             */
-/*   Updated: 2025/07/19 16:09:27 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/19 16:37:40 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ size_t	ft_strlen_space(const char *str)
 	while (str[i])
 	{
 		if (str[i] == ' ' || str[i] == '\t')
-			i++;
+			return (i);
+		i++;
 	}
-	exit *
 	return (i);
 }

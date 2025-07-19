@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:57:53 by skock             #+#    #+#             */
-/*   Updated: 2025/07/19 16:08:00 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/19 18:10:47 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,29 +97,62 @@ void	stock_path(t_cube *cube, int id, char *path)
 		cube->path[WEST] = ft_strdup(path);
 	}
 }
-static void	is_xpm(t_cube *cube, char	*file_path)
+
+void	process_path(t_cube *cube, char **str)
 {
-	int	i;
+	char	*new_str;
+	int i;
+	
+	i = 0;
+	while ((*str)[i])
+	{
+		if ((*str)[i] == ' ' || (*str)[i] == '\n' || (*str)[i] == '\t')
+			break;
+		i++;
+	}
+	new_str = ft_substr(*str, 0, i);
+	if (ft_strcmp(new_str + (ft_strlen(new_str) - 4), ".xpm") != 0)
+		ft_error_parsing(cube, "Need .xpm extension for a texture");
+	free(*str);
+	*str = new_str;
+}
+
+void	verif_path(t_cube *cube, char **str)
+{
+	int i;
 
 	i = 0;
-	while (file_path[i] != '\0')
+	if (ft_strlen((*str)) < 4)
+	{
+		free((*str));
+		ft_error_parsing(cube, "Need .xpm extension for a texture");
+	}
+	while ((*str)[i] && !ft_iswhitespace((*str)[i]))
 		i++;
-	if (file_path[i - 1] == 'm' && file_path[i - 2] == 'p'
-		&& file_path[i - 3] == 'x' && file_path[i - 4] == '.')
-		return ;
+	if (!(*str)[i])
+		process_path(cube, str);
 	else
-		ft_error_parsing(cube, "texture's path must be '.xpm'.");
+	{
+		while (ft_iswhitespace((*str)[i]))
+			i++;
+		if (!(*str)[i])
+			process_path(cube, str);
+		else
+		{
+			free((*str));
+			ft_error_parsing(cube, "Cannot have 2 arguments as texture file");
+		}
+	}
 }
+
 void	check_path(t_cube *cube, int id, int *i, int *j)
 {
 	char	*path;
 	int		fd;
 
 	path = ft_substr(cube->map->grid[*i], (*j),
-	(ft_strlen_space(cube->map->grid[*i]) - (*j)));
-	printf("la ligne complete %zu\n", ft_strlen(cube->map->grid[*i]));
-	printf("le path %zu\n", ft_strlen(path));
-	is_xpm(cube, path);
+	(ft_strlen(cube->map->grid[*i]) - (*j)));
+	verif_path(cube, &path);
 	fd = open(path, O_RDONLY);
 	stock_path(cube, id, path);
 	if (fd < 0)
