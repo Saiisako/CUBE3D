@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/19 12:26:27 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/19 15:51:17 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,5 +239,9 @@ void	init_player(t_cube *cube);
 void	set_wall_direction(t_cube *cube);
 void	update_texture(t_cube *cube, int x);
 void	render_floor_ceiling(t_cube *cube);
-
+int		on_key_press(int keycode, t_cube *cube);
+int		on_key_release(int keycode, t_cube *cube);
+void	init_input(t_cube *cube);
+void	ft_error_parsing_2(t_cube *cube, const char *str);
+size_t	ft_strlen_space(const char *str);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:21:24 by skock             #+#    #+#             */
-/*   Updated: 2025/05/19 21:34:15 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/07/19 15:50:59 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,4 @@ void	ft_strclear(char *str, const char *remove);
 char	*ft_strrchr(const char *str, int c);
 char	*ft_strchr_lib(const char *str, int c);
 int		ft_atoll(const char *str, long long *out);
-
 #endif

@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:09:26 by skock             #+#    #+#             */
-/*   Updated: 2025/07/15 15:55:54 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/19 13:46:38 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,22 @@ void	ft_error_parsing(t_cube *cube, const char *str)
 		free_array(cube->map->grid);
 	if (cube->map)
 		free(cube->map);
+	if (cube->id)
+		free(cube->id);
+	if (cube->color_c)
+		free(cube->color_c);
+	if (cube->color_f)
+		free(cube->color_f);
+	if (cube->path)
+		free_array(cube->path);
+	if (cube)
+		free(cube);
+	ft_printf("Error parsing: %s\n", str);
+	exit(1);
+}
+
+void	ft_error_parsing_2(t_cube *cube, const char *str)
+{
 	if (cube->id)
 		free(cube->id);
 	if (cube->color_c)

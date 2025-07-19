@@ -1,0 +1,20 @@
+
+
+
+
+
+F 70,70,70
+
+NO	assets/stone.xpm           
+EA	assets/cobbled_deepslate.xpm
+SO	assets/cobblestone.xpm
+WE	assets/mossy_cobblestone.xpm
+   C      110,110,7
+
+111111111111111
+1000000000000011111111
+1000001001000000000N1
+10000000000000111111
+100100000000001
+100000000001001
+111111111111111

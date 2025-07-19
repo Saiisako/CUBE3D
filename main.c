@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:41:54 by skock             #+#    #+#             */
-/*   Updated: 2025/07/19 12:12:53 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/19 13:51:06 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ int	main(int ac, char **av)
 		graphic(cube);
 	}
 	else
+	{
+		printf("Error: You must provide ONE map.\n");
 		free(cube);
+	}
 	return (0);
 }

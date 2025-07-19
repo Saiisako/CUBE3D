@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 08:39:29 by skock             #+#    #+#             */
-/*   Updated: 2025/07/02 12:15:53 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/19 13:52:40 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ static void	check_left_map(t_cube *cube, char **tab, int i)
 
 void	verif_map(t_cube *cube)
 {
-	print_map(cube->map_cpy->grid);
 	check_left_map(cube, cube->map_cpy->grid, 0);
 	check_right_map(cube, cube->map_cpy->grid, 0);
 	check_top_map(cube, cube->map_cpy->grid, 0);

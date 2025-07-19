@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:09:28 by skock             #+#    #+#             */
-/*   Updated: 2025/07/19 12:28:20 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/19 12:58:10 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	free_array(char **array)
 	free(array);
 }
 
-int	free_all(t_cube *cube)
+static void	free_all1(t_cube *cube)
 {
 	if (cube->map_cpy->grid)
 		free_array(cube->map_cpy->grid);
@@ -60,6 +60,11 @@ int	free_all(t_cube *cube)
 		free(cube->ray);
 	if (cube->path)
 		free_array(cube->path);
+}
+
+int	free_all(t_cube *cube)
+{
+	free_all1(cube);
 	if (cube->texture_img)
 		free_tab(cube->texture_img);
 	if (cube->texture)

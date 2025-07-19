@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:15:24 by skock             #+#    #+#             */
-/*   Updated: 2025/07/07 13:16:31 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/19 13:44:48 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,28 +75,26 @@ static void	check_map(t_cube *cube, int i)
 	verif_map(cube);
 }
 
-static void	is_cub(char	*file_path)
+static void	is_cub(t_cube *cube, char	*file_path)
 {
 	int	i;
 
 	i = 0;
 	while (file_path[i] != '\0')
 		i++;
-	if (i <= 4)
-		ft_error_parsing(NULL, "Invalid file. Extension must be '.cub'.");
 	if (file_path[i - 1] == 'b' && file_path[i - 2] == 'u'
 		&& file_path[i - 3] == 'c' && file_path[i - 4] == '.')
 		return ;
 	else
-		ft_error_parsing(NULL, "Invalid file. Extension must be '.cub'.");
+		ft_error_parsing_2(cube, "Invalid file. Extension must be '.cub'.");
 }
 
 void	parsing(t_cube *cube)
 {
 	int	i;
 
+	is_cub(cube, cube->file_path);
 	read_map(cube->file_path, cube);
-	is_cub(cube->file_path);
 	i = check_id(cube);
 	check_map(cube, i);
 }

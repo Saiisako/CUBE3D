@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:19:39 by skock             #+#    #+#             */
-/*   Updated: 2025/07/19 12:40:14 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/19 13:04:35 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,44 +21,6 @@ void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color)
 	dst = cube->img->addr + (y * cube->img->line_length + x
 			* (cube->img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
-}
-
-int on_key_press(int keycode, t_cube *cube)
-{
-	if (keycode == ESCAPE)
-		cube->quit = 1;
-	if (keycode == W)
-		cube->move_up = 1;
-	if (keycode == S)
-		cube->move_down = 1;
-	if (keycode == A)
-		cube->move_left = 1;
-	if (keycode == D)
-		cube->move_right = 1;
-	if (keycode == ROTATE_L)
-		cube->rotate_left = 1;
-	if (keycode == ROTATE_R)
-		cube->rotate_right = 1;
-	return (0);
-}
-
-int on_key_release(int keycode, t_cube *cube)
-{
-	if (keycode == ESCAPE)
-		cube->quit = 0;
-	if (keycode == W)
-		cube->move_up = 0;
-	if (keycode == S)
-		cube->move_down = 0;
-	if (keycode == A)
-		cube->move_left = 0;
-	if (keycode == D)
-		cube->move_right = 0;
-	if (keycode == ROTATE_L)
-		cube->rotate_left = 0;
-	if (keycode == ROTATE_R)
-		cube->rotate_right = 0;
-	return (0);
 }
 
 int	render(t_cube *cube)
