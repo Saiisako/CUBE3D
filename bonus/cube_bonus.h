@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/20 16:07:21 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/20 15:49:31 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # define SOUTH 1
 # define EAST 2
 # define WEST 3
+# define DOOR_OPEN 4
+# define DOOR_CLOSE 5
 # define TEXTURE_SIZE 64
 # define ESCAPE 65307
 # define W 119
@@ -176,6 +178,7 @@ typedef struct s_cube
 	bool		day;
 	bool		night;
 	bool		open_door;
+	bool		is_door_open;
 }			t_cube;
 
 // PARSING

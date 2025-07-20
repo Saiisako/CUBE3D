@@ -32,6 +32,8 @@ void	dda_algo(t_cube *cube)
 			break ;
 		if (cube->map_cpy->grid[cube->ray->map_y][cube->ray->map_x] == '1')
 			cube->ray->hit = 1;
+		if (cube->map_cpy->grid[cube->ray->map_y][cube->ray->map_x] == 'P')
+			cube->ray->hit = 1;
 	}
 }
 

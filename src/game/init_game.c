@@ -58,7 +58,10 @@ void	init_image(t_cube *cube, t_image *tmp, char *path)
 			&cube->texture->size,
 			&cube->texture->size);
 	if (!tmp->img)
+	{
+		printf("Error:\ncannot open file.\n");
 		exit(1);
+	}
 	tmp->addr = mlx_get_data_addr(tmp->img, &tmp->bits_per_pixel,
 			&tmp->line_length, &tmp->endian);
 	tmp->color = (int *)tmp->addr;

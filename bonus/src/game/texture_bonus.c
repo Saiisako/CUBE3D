@@ -14,7 +14,11 @@
 
 void	set_wall_direction(t_cube *cube)
 {
-	if (cube->ray->side == VERTICAL)
+	if (cube->map_cpy->grid[cube->ray->map_y][cube->ray->map_x] == 'P'&& !cube->is_door_open)
+		cube->texture->index = DOOR_OPEN;
+	else if (cube->map_cpy->grid[cube->ray->map_y][cube->ray->map_x] == 'P' && cube->is_door_open)
+		cube->texture->index = DOOR_CLOSE;
+	else if (cube->ray->side == VERTICAL)
 	{
 		if (cube->ray->ray_dir_x > 0)
 			cube->texture->index = EAST;

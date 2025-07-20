@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:12:21 by skock             #+#    #+#             */
-/*   Updated: 2025/07/20 13:23:26 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/20 15:50:02 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	init_cube(t_cube *cube, char **av)
 	cube->id->ea_bool = false;
 	cube->id->f_bool = false;
 	cube->id->c_bool = false;
+	cube->is_door_open = false;
 	cube->count = 0;
 }
 

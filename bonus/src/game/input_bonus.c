@@ -14,7 +14,6 @@
 
 int	on_key_press(int keycode, t_cube *cube)
 {
-	printf("%d\n", keycode);
 	if (keycode == ESCAPE)
 		cube->quit = 1;
 	if (keycode == W)
@@ -30,7 +29,12 @@ int	on_key_press(int keycode, t_cube *cube)
 	if (keycode == ROTATE_R)
 		cube->rotate_right = 1;
 	if (keycode == OPEN)
-		cube->open_door = 1;
+	{
+		if (!cube->open_door)
+			cube->open_door = 1;
+		else
+			cube->open_door = 0;
+	}
 	if (keycode == DAY)
 		cube->day = 1;
 	if (keycode == NIGHT)
@@ -54,8 +58,6 @@ int	on_key_release(int keycode, t_cube *cube)
 		cube->rotate_left = 0;
 	if (keycode == ROTATE_R)
 		cube->rotate_right = 0;
-	if (keycode == OPEN)
-		cube->open_door = 0;
 	if (keycode == DAY)
 		cube->day = 0;
 	if (keycode == NIGHT)
@@ -86,7 +88,9 @@ void	quit_game(t_cube *cube)
 void	bonus_actions(t_cube *cube)
 {
 	if (cube->open_door)
-		printf("here");
+		cube->is_door_open = 1;
+	else if (cube->is_door_open == 1)
+		cube->is_door_open = 0;
 	if (cube->day == 1)
 		cube->color_c->color = (120 << 16) | (150 << 8) | 150;
 	if (cube->night == 1)
