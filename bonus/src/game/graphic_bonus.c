@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:19:39 by skock             #+#    #+#             */
-/*   Updated: 2025/07/20 15:15:30 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/20 15:36:26 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,38 @@ int	*xpm_to_image(t_cube *cube, char *path)
 	return (buffer);
 }
 
+int	*xpm_to_image_door(t_cube *cube, int door_state)
+{
+	t_image	tmp;
+	int		*buffer;
+	int		x;
+	int		y;
+
+	if (door_state == DOOR_CLOSE)
+		init_image(cube, &tmp, "assets/door_close.xpm");
+	else if (door_state == DOOR_OPEN)
+		init_image(cube, &tmp, "assets/door.xpm");
+	buffer = ft_calloc(TEXTURE_SIZE * TEXTURE_SIZE, sizeof(int));
+	if (!buffer)
+		exit(1);
+	y = 0;
+	while (y < TEXTURE_SIZE)
+	{
+		x = 0;
+		while (x < TEXTURE_SIZE)
+		{
+			buffer[y * TEXTURE_SIZE + x] = tmp.color[y * TEXTURE_SIZE + x];
+			x++;
+		}
+		y++;
+	}
+	mlx_destroy_image(cube->mlx, tmp.img);
+	return (buffer);
+}
+
 void	load_textures(t_cube *cube)
 {
-	cube->texture_img = ft_calloc(5, sizeof(int *));
+	cube->texture_img = ft_calloc(7, sizeof(int *));
 	if (!cube->texture_img)
 		exit(1);
 	init_tex(cube);
@@ -85,6 +114,8 @@ void	load_textures(t_cube *cube)
 	cube->texture_img[SOUTH] = xpm_to_image(cube, cube->path[SOUTH]);
 	cube->texture_img[EAST] = xpm_to_image(cube, cube->path[EAST]);
 	cube->texture_img[WEST] = xpm_to_image(cube, cube->path[WEST]);
+	cube->texture_img[DOOR_OPEN] = xpm_to_image_door(cube, DOOR_OPEN);
+	cube->texture_img[DOOR_CLOSE] = xpm_to_image_door(cube, DOOR_CLOSE);
 }
 
 void	graphic(t_cube *cube)
