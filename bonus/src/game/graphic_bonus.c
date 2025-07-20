@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:19:39 by skock             #+#    #+#             */
-/*   Updated: 2025/07/20 13:23:49 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/20 15:15:30 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,21 @@ void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+void	bonus_mouse(t_cube *cube)
+{
+	int	x;
+	int	y;
+
+	mlx_mouse_get_pos(cube->mlx, cube->win, &x, &y);
+	if (x < WIN_WIDTH / 3)
+		rotate(cube, ROTATE_L);
+	else if (x > 2 * WIN_WIDTH / 3)
+		rotate(cube, ROTATE_R);
+}
+
 int	render(t_cube *cube)
 {
+	bonus_mouse(cube);
 	input(cube);
 	mlx_destroy_image(cube->mlx, cube->img->img);
 	cube->img->img = mlx_new_image(cube->mlx, WIN_WIDTH, WIN_HEIGHT);
@@ -76,6 +89,7 @@ void	load_textures(t_cube *cube)
 
 void	graphic(t_cube *cube)
 {
+	print_map(cube->map_cpy->grid);
 	cube->mlx = mlx_init();
 	cube->win = mlx_new_window(cube->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	init_game(cube);

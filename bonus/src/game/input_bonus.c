@@ -14,6 +14,7 @@
 
 int	on_key_press(int keycode, t_cube *cube)
 {
+	printf("%d\n", keycode);
 	if (keycode == ESCAPE)
 		cube->quit = 1;
 	if (keycode == W)
@@ -28,6 +29,12 @@ int	on_key_press(int keycode, t_cube *cube)
 		cube->rotate_left = 1;
 	if (keycode == ROTATE_R)
 		cube->rotate_right = 1;
+	if (keycode == OPEN)
+		cube->open_door = 1;
+	if (keycode == DAY)
+		cube->day = 1;
+	if (keycode == NIGHT)
+		cube->night = 1;
 	return (0);
 }
 
@@ -47,6 +54,12 @@ int	on_key_release(int keycode, t_cube *cube)
 		cube->rotate_left = 0;
 	if (keycode == ROTATE_R)
 		cube->rotate_right = 0;
+	if (keycode == OPEN)
+		cube->open_door = 0;
+	if (keycode == DAY)
+		cube->day = 0;
+	if (keycode == NIGHT)
+		cube->night = 0;
 	return (0);
 }
 
@@ -59,6 +72,9 @@ void	init_input(t_cube *cube)
 	cube->rotate_right = 0;
 	cube->rotate_left = 0;
 	cube->quit = 0;
+	cube->day = 0;
+	cube->night = 0;
+	cube->open_door = 0;
 }
 
 void	quit_game(t_cube *cube)
@@ -67,8 +83,19 @@ void	quit_game(t_cube *cube)
 		free_all(cube);
 }
 
+void	bonus_actions(t_cube *cube)
+{
+	if (cube->open_door)
+		printf("here");
+	if (cube->day == 1)
+		cube->color_c->color = (120 << 16) | (150 << 8) | 150;
+	if (cube->night == 1)
+		cube->color_c->color = (12 << 16) | (15 << 8) | 50;
+}
+
 int	input(t_cube *cube)
 {
+	bonus_actions(cube);
 	quit_game(cube);
 	walk(cube);
 	if (cube->rotate_left)

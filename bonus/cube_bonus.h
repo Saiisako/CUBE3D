@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/20 13:13:10 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/20 14:56:42 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@
 # define ROTATE_R 65363
 # define ROTATION_SPEED 0.04
 # define MOVE_SPEED 0.04
+# define OPEN 101
+# define DAY 116
+# define NIGHT 121
+// # define DAY 120,150,150
+// # define NIGHT C 12,15,50
 
 typedef enum s_enum
 {
@@ -168,6 +173,9 @@ typedef struct s_cube
 	bool		rotate_left;
 	bool		rotate_right;
 	bool		quit;
+	bool		day;
+	bool		night;
+	bool		open_door;
 }			t_cube;
 
 ///////////////// FUNCTIONS /////////////////
