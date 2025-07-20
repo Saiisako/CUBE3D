@@ -30,8 +30,30 @@ SRCS = main.c\
 	src/game/rotation.c\
 	src/game/texture.c
 
-# Suppression de BONUS_SRCS et BONUS_OBJS fixes, remplacés par find
-BONUS_SRCS := $(shell find bonus -name '*.c')
+BONUS_SRCS = bonus/main_bonus.c\
+	bonus/src/parsing/error_bonus.c\
+	bonus/src/parsing/parsing_bonus.c\
+	bonus/src/parsing/free_parsing_bonus.c\
+	bonus/src/parsing/malloc_map_bonus.c\
+	bonus/src/parsing/init_bonus.c\
+	bonus/src/parsing/verif_colors_bonus.c\
+	bonus/src/parsing/verif_id_bonus.c\
+	bonus/src/parsing/verif_path_bonus.c\
+	bonus/src/parsing/verif_path2_bonus.c\
+	bonus/src/parsing/utils_bonus.c\
+	bonus/src/parsing/check_borders_bonus.c\
+	bonus/src/parsing/check_map_bonus.c\
+	bonus/src/parsing/utils2_bonus.c\
+	bonus/src/game/graphic_bonus.c\
+	bonus/src/game/init_game_bonus.c\
+	bonus/src/game/init_player_bonus.c\
+	bonus/src/game/raycasting_bonus.c\
+	bonus/src/game/input_bonus.c\
+	bonus/src/game/movement_bonus.c\
+	bonus/src/game/rendering_bonus.c\
+	bonus/src/game/rotation_bonus.c\
+	bonus/src/game/texture_bonus.c
+
 BONUS_OBJS := $(BONUS_SRCS:%.c=obj/%.o)
 
 RED = \033[0;31m
