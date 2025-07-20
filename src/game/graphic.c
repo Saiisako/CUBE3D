@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:19:39 by skock             #+#    #+#             */
-/*   Updated: 2025/07/20 15:15:19 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/20 15:53:47 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	render(t_cube *cube)
 	return (1);
 }
 
-int	*xpm_to_image(t_cube *cube, char *path)
+static int	*xpm_to_image(t_cube *cube, char *path)
 {
 	t_image	tmp;
 	int		*buffer;
@@ -62,7 +62,7 @@ int	*xpm_to_image(t_cube *cube, char *path)
 	return (buffer);
 }
 
-void	load_textures(t_cube *cube)
+static void	load_textures(t_cube *cube)
 {
 	cube->texture_img = ft_calloc(5, sizeof(int *));
 	if (!cube->texture_img)

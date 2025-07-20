@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   cube_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/20 14:56:42 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/20 16:07:21 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE_H
-# define CUBE_H
+#ifndef CUBE_BONUS_H
+# define CUBE_BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -178,26 +178,25 @@ typedef struct s_cube
 	bool		open_door;
 }			t_cube;
 
-///////////////// FUNCTIONS /////////////////
+// PARSING
 
-		////////// PARSING //////////
-
+void	init_struct(t_cube *cube, char **av);
 void	parsing(t_cube *cube);
 void	read_map(const char *file_path, t_cube *cube);
-void	init_struct(t_cube *cube, char **av);
 int		check_id(t_cube *cube);
 void	verif_map(t_cube *cube);
 void	check_path(t_cube *cube, int id, int *i, int *j);
+void	process_path(t_cube *cube, char **str);
+void	verif_path(t_cube *cube, char **str);
 void	check_colors(t_cube *cube, int id, int *i, int *j);
 void	check_duplicate_color(t_cube *cube, int id, char *format);
 void	change_id_color_bool(t_cube *cube, int id, char *format);
 void	check_x(t_cube *cube);
 char	*ft_strdup_set(const char *line, int end);
-void	check_comma(t_cube *cube, char *format);
 void	copy_map(t_cube *cube, int start, int length);
 void	print_map(char **map);
 
-//UTILS
+// UTILS
 int		ft_is_upper_alpha(int c);
 int		ft_atoi_rgb(const char *str);
 int		is_valid_char(t_cube *cube, char c);
@@ -205,53 +204,47 @@ int		is_valid_start(char *line);
 int		update_start(t_cube *cube, int start);
 int		update_height(t_cube *cube, int start);
 int		get_longest_line(char **map, int i);
+void	check_comma(t_cube *cube, char *format);
 
 // FREE + ERROR
-int		free_all(t_cube *cube);
+void	free_tab(int **array);
 void	free_array(char **array);
+int		free_all(t_cube *cube);
 void	ft_error_fd(t_cube *cube);
 void	ft_error_parsing(t_cube *cube, const char *str);
+void	ft_error_parsing_2(t_cube *cube, const char *str);
 void	ft_error_parsing_map(t_cube *cube, const char *str);
 void	ft_error_parsing_empty_map(t_cube *cube, const char *str);
 
-		////////// GAME //////////
+// GAME
+
 void	graphic(t_cube *cube);
 void	init_game(t_cube *cube);
-int		raycasting(t_cube *cube);
-void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color);
-
-// INIT PLAYER
+void	init_player(t_cube *cube);
+void	init_input(t_cube *cube);
+void	init_tex(t_cube *cube);
+void	init_main_image(t_cube *cube);
 void	find_player_position(t_cube *cube);
 void	init_player_position(t_cube *cube);
-
-void	free_tab(int **array);
-
-void	rotate_left_vector_dir(t_cube *cube);
-void	rotate_left_vector_plane(t_cube *cube);
-void	rotate_right_vector_dir(t_cube *cube);
-void	rotate_right_vector_plane(t_cube *cube);
-void	rotate(t_cube *cube, int keycode);
-
+int		raycasting(t_cube *cube);
+void	render_floor_ceiling(t_cube *cube);
+void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color);
+void	update_texture(t_cube *cube, int x);
+void	set_wall_direction(t_cube *cube);
+void	init_image(t_cube *cube, t_image *tmp, char *path);
+int		on_key_press(int keycode, t_cube *cube);
+int		on_key_release(int keycode, t_cube *cube);
+int		input(t_cube *cube);
+void	quit_game(t_cube *cube);
+void	walk(t_cube *cube);
 void	move_forward(t_cube *cube);
 void	move_backward(t_cube *cube);
 void	move_left(t_cube *cube);
 void	move_right(t_cube *cube);
-void	walk(t_cube *cube);
-
-void	quit_game(t_cube *cube);
-int		input(t_cube *cube);
-void	init_main_image(t_cube *cube);
-void	init_tex(t_cube *cube);
-void	init_image(t_cube *cube, t_image *tmp, char *path);
-void	init_player(t_cube *cube);
-void	set_wall_direction(t_cube *cube);
-void	update_texture(t_cube *cube, int x);
-void	render_floor_ceiling(t_cube *cube);
-int		on_key_press(int keycode, t_cube *cube);
-int		on_key_release(int keycode, t_cube *cube);
-void	init_input(t_cube *cube);
-void	ft_error_parsing_2(t_cube *cube, const char *str);
-void	process_path(t_cube *cube, char **str);
-void	verif_path(t_cube *cube, char **str);
+void	rotate(t_cube *cube, int keycode);
+void	rotate_left_vector_dir(t_cube *cube);
+void	rotate_left_vector_plane(t_cube *cube);
+void	rotate_right_vector_dir(t_cube *cube);
+void	rotate_right_vector_plane(t_cube *cube);
 
 #endif
