@@ -12,7 +12,7 @@
 
 #include "../../cube.h"
 
-void	dda_algo(t_cube *cube)
+static void	dda_algo(t_cube *cube)
 {
 	while (cube->ray->hit == 0)
 	{
@@ -35,7 +35,7 @@ void	dda_algo(t_cube *cube)
 	}
 }
 
-void	init_ray_steps(t_cube *cube)
+static void	init_ray_steps(t_cube *cube)
 {
 	if (cube->ray->ray_dir_x < 0)
 	{
@@ -63,7 +63,7 @@ void	init_ray_steps(t_cube *cube)
 	}
 }
 
-void	init_ray_data(t_cube *cube, int x)
+static void	init_ray_data(t_cube *cube, int x)
 {
 	cube->ray->camerax = 2 * x / (double)WIN_WIDTH - 1;
 	cube->ray->ray_dir_x = cube->player->dir_x + (cube->player->plane_x
@@ -76,7 +76,7 @@ void	init_ray_data(t_cube *cube, int x)
 	cube->ray->delta_dist_y = fabs(1 / cube->ray->ray_dir_y);
 }
 
-void	calculate_line(t_cube *cube)
+static void	calculate_line(t_cube *cube)
 {
 	if (cube->ray->side == 0)
 		cube->ray->perp_wall_dist = (cube->ray->map_x
