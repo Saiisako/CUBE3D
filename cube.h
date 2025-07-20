@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/19 15:51:17 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/20 12:21:50 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,5 +243,7 @@ int		on_key_press(int keycode, t_cube *cube);
 int		on_key_release(int keycode, t_cube *cube);
 void	init_input(t_cube *cube);
 void	ft_error_parsing_2(t_cube *cube, const char *str);
-size_t	ft_strlen_space(const char *str);
+void	process_path(t_cube *cube, char **str);
+void	verif_path(t_cube *cube, char **str);
+
 #endif

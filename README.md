@@ -74,3 +74,7 @@ bonus mouse : a mettre dans <render>
 		rotate(cube, ROTATE_R);
 }
 
+
+
+C 120,150,150 jour
+C 12,15,50 nuit

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:59:08 by skock             #+#    #+#             */
-/*   Updated: 2025/07/18 16:34:54 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/20 12:09:37 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,11 @@ void	check_colors(t_cube *cube, int id, int *i, int *j)
 
 	format = ft_substr(cube->map->grid[*i], (*j),
 			(ft_strlen(cube->map->grid[*i]) - (*j)));
+	if (ft_strlen((format)) > 11)
+	{
+		free(format);
+		ft_error_parsing(cube, "rgb color format is not respected (X,X,X).");
+	}
 	check_format(cube, format, id);
 	change_id_color_bool(cube, id, format);
 	free(format);

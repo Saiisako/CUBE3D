@@ -6,7 +6,7 @@
 /*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:57:53 by skock             #+#    #+#             */
-/*   Updated: 2025/07/19 18:10:47 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/20 12:20:38 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,60 +98,13 @@ void	stock_path(t_cube *cube, int id, char *path)
 	}
 }
 
-void	process_path(t_cube *cube, char **str)
-{
-	char	*new_str;
-	int i;
-	
-	i = 0;
-	while ((*str)[i])
-	{
-		if ((*str)[i] == ' ' || (*str)[i] == '\n' || (*str)[i] == '\t')
-			break;
-		i++;
-	}
-	new_str = ft_substr(*str, 0, i);
-	if (ft_strcmp(new_str + (ft_strlen(new_str) - 4), ".xpm") != 0)
-		ft_error_parsing(cube, "Need .xpm extension for a texture");
-	free(*str);
-	*str = new_str;
-}
-
-void	verif_path(t_cube *cube, char **str)
-{
-	int i;
-
-	i = 0;
-	if (ft_strlen((*str)) < 4)
-	{
-		free((*str));
-		ft_error_parsing(cube, "Need .xpm extension for a texture");
-	}
-	while ((*str)[i] && !ft_iswhitespace((*str)[i]))
-		i++;
-	if (!(*str)[i])
-		process_path(cube, str);
-	else
-	{
-		while (ft_iswhitespace((*str)[i]))
-			i++;
-		if (!(*str)[i])
-			process_path(cube, str);
-		else
-		{
-			free((*str));
-			ft_error_parsing(cube, "Cannot have 2 arguments as texture file");
-		}
-	}
-}
-
 void	check_path(t_cube *cube, int id, int *i, int *j)
 {
 	char	*path;
 	int		fd;
 
 	path = ft_substr(cube->map->grid[*i], (*j),
-	(ft_strlen(cube->map->grid[*i]) - (*j)));
+			(ft_strlen(cube->map->grid[*i]) - (*j)));
 	verif_path(cube, &path);
 	fd = open(path, O_RDONLY);
 	stock_path(cube, id, path);

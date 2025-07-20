@@ -3,34 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
+/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:09:26 by skock             #+#    #+#             */
-/*   Updated: 2025/07/19 13:46:38 by naankour         ###   ########.fr       */
+/*   Updated: 2025/07/20 12:32:02 by skock            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cube.h"
-
-void	check_comma(t_cube *cube, char *format)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (format[i])
-	{
-		if (format[i] == ',')
-			count++;
-		i++;
-	}
-	if (count != 2)
-	{
-		free(format);
-		ft_error_parsing(cube, "rgb color format is not respected (X,X,X).");
-	}
-}
 
 void	ft_error_fd(t_cube *cube)
 {
@@ -55,7 +35,7 @@ void	ft_error_parsing_empty_map(t_cube *cube, const char *str)
 		free_array(cube->path);
 	if (cube)
 		free(cube);
-	ft_printf("Error parsing: %s\n", str);
+	ft_printf("Error:\n %s\n", str);
 	exit(1);
 }
 
@@ -79,7 +59,7 @@ void	ft_error_parsing_map(t_cube *cube, const char *str)
 		free_array(cube->path);
 	if (cube)
 		free(cube);
-	ft_printf("Error parsing: %s\n", str);
+	ft_printf("Error:\n%s\n", str);
 	exit(1);
 }
 
@@ -99,7 +79,7 @@ void	ft_error_parsing(t_cube *cube, const char *str)
 		free_array(cube->path);
 	if (cube)
 		free(cube);
-	ft_printf("Error parsing: %s\n", str);
+	ft_printf("Error:\n%s\n", str);
 	exit(1);
 }
 
@@ -115,6 +95,6 @@ void	ft_error_parsing_2(t_cube *cube, const char *str)
 		free_array(cube->path);
 	if (cube)
 		free(cube);
-	ft_printf("Error parsing: %s\n", str);
+	ft_printf("Error:\n%s\n", str);
 	exit(1);
 }
