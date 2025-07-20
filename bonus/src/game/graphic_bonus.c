@@ -3,37 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   graphic_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skock <skock@student.42.fr>                +#+  +:+       +#+        */
+/*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:19:39 by skock             #+#    #+#             */
-/*   Updated: 2025/07/20 15:36:26 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/20 18:55:44 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cube_bonus.h"
-
-void	my_mlx_pixel_put(t_cube *cube, int x, int y, int color)
-{
-	char	*dst;
-
-	if (x < 0 || x >= WIN_WIDTH || y < 0 || y >= WIN_HEIGHT)
-		return ;
-	dst = cube->img->addr + (y * cube->img->line_length + x
-			* (cube->img->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
-
-void	bonus_mouse(t_cube *cube)
-{
-	int	x;
-	int	y;
-
-	mlx_mouse_get_pos(cube->mlx, cube->win, &x, &y);
-	if (x < WIN_WIDTH / 3)
-		rotate(cube, ROTATE_L);
-	else if (x > 2 * WIN_WIDTH / 3)
-		rotate(cube, ROTATE_R);
-}
 
 int	render(t_cube *cube)
 {
@@ -45,6 +22,7 @@ int	render(t_cube *cube)
 			&cube->img->bits_per_pixel,
 			&cube->img->line_length, &cube->img->endian);
 	raycasting(cube);
+	render_minimap(cube);
 	mlx_put_image_to_window(cube->mlx, cube->win, cube->img->img, 0, 0);
 	return (1);
 }
@@ -120,7 +98,6 @@ void	load_textures(t_cube *cube)
 
 void	graphic(t_cube *cube)
 {
-	print_map(cube->map_cpy->grid);
 	cube->mlx = mlx_init();
 	cube->win = mlx_new_window(cube->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	init_game(cube);

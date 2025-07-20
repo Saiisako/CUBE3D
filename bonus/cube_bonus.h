@@ -6,7 +6,7 @@
 /*   By: naankour <naankour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 14:42:12 by skock             #+#    #+#             */
-/*   Updated: 2025/07/20 15:49:31 by skock            ###   ########.fr       */
+/*   Updated: 2025/07/20 18:59:17 by naankour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@
 # define D 100
 # define ROTATE_L 65361
 # define ROTATE_R 65363
-# define ROTATION_SPEED 0.04
-# define MOVE_SPEED 0.04
+# define ROTATION_SPEED 0.02
+# define MOVE_SPEED 0.03
 # define OPEN 101
 # define DAY 116
 # define NIGHT 121
-// # define DAY 120,150,150
-// # define NIGHT C 12,15,50
+# define MINIMAP_SCALE 15
+# define MINIMAP_START 10
 
 typedef enum s_enum
 {
@@ -249,5 +249,8 @@ void	rotate_left_vector_dir(t_cube *cube);
 void	rotate_left_vector_plane(t_cube *cube);
 void	rotate_right_vector_dir(t_cube *cube);
 void	rotate_right_vector_plane(t_cube *cube);
+void	render_minimap(t_cube *cube);
+int		is_walkable_or_player(char c);
+void	bonus_mouse(t_cube *cube);
 
 #endif

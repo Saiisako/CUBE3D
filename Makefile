@@ -49,6 +49,7 @@ BONUS_SRCS = bonus/main_bonus.c\
 	bonus/src/game/init_player_bonus.c\
 	bonus/src/game/raycasting_bonus.c\
 	bonus/src/game/input_bonus.c\
+	bonus/src/game/mouse_key_bonus.c\
 	bonus/src/game/movement_bonus.c\
 	bonus/src/game/rendering_bonus.c\
 	bonus/src/game/rotation_bonus.c\
@@ -117,7 +118,7 @@ minilibx:
 clear:
 	@$(RM) $(OBJS) $(BONUS_OBJS)
 
-clean: 
+clean:
 	@$(MAKE) -s clear
 	@make -s -C library/libft clean
 

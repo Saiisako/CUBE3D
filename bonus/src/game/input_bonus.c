@@ -12,36 +12,6 @@
 
 #include "../../cube_bonus.h"
 
-int	on_key_press(int keycode, t_cube *cube)
-{
-	if (keycode == ESCAPE)
-		cube->quit = 1;
-	if (keycode == W)
-		cube->move_up = 1;
-	if (keycode == S)
-		cube->move_down = 1;
-	if (keycode == A)
-		cube->move_left = 1;
-	if (keycode == D)
-		cube->move_right = 1;
-	if (keycode == ROTATE_L)
-		cube->rotate_left = 1;
-	if (keycode == ROTATE_R)
-		cube->rotate_right = 1;
-	if (keycode == OPEN)
-	{
-		if (!cube->open_door)
-			cube->open_door = 1;
-		else
-			cube->open_door = 0;
-	}
-	if (keycode == DAY)
-		cube->day = 1;
-	if (keycode == NIGHT)
-		cube->night = 1;
-	return (0);
-}
-
 int	on_key_release(int keycode, t_cube *cube)
 {
 	if (keycode == ESCAPE)

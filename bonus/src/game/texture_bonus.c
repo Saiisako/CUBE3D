@@ -12,11 +12,18 @@
 
 #include "../../cube_bonus.h"
 
+int	is_walkable_or_player(char c)
+{
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == '0');
+}
+
 void	set_wall_direction(t_cube *cube)
 {
-	if (cube->map_cpy->grid[cube->ray->map_y][cube->ray->map_x] == 'P'&& !cube->is_door_open)
+	if (cube->map_cpy->grid[cube->ray->map_y][cube->ray->map_x] == 'P'
+		&& !cube->is_door_open)
 		cube->texture->index = DOOR_OPEN;
-	else if (cube->map_cpy->grid[cube->ray->map_y][cube->ray->map_x] == 'P' && cube->is_door_open)
+	else if (cube->map_cpy->grid[cube->ray->map_y][cube->ray->map_x] == 'P'
+		&& cube->is_door_open)
 		cube->texture->index = DOOR_CLOSE;
 	else if (cube->ray->side == VERTICAL)
 	{
