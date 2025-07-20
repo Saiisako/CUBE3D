@@ -2,6 +2,11 @@
 	"files.associations": {
 		"cube.h": "c",
 		"cstdlib": "c",
-		"random": "c"
+		"random": "c",
+		"stdlib.h": "c",
+		"mlx.h": "c",
+		"get_next_line.h": "c",
+		"stdbool.h": "c",
+		"cube_bonus.h": "c"
 	}
 }
