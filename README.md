@@ -1,6 +1,6 @@
 # 🧊 CUBE3D
 
-Project developed as part of our training program, in collaboration with **Naankour**.
+Project developed as part of our Common Core at 42 school, in collaboration with **Naankour**.
 
 ##  Description
 
