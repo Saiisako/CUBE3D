@@ -29,7 +29,7 @@ Developed in **C** using the **MiniLibX** library.
 - Optional minimap
 
 <p align="center">
-  <img src="Readme/minimap.gif" alt="Minimap Demo" width="50%">
+  <img src="Readme/minimap.gif" alt="Minimap Demo" width="20%">
 </p>
 
 ## Technologies
